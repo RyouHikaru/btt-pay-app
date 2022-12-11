@@ -1,8 +1,11 @@
+import Landing from "./components/Landing/Landing";
+import { Route, Routes } from 'react-router-dom';
+
 function App() {
   return (
-    <div>
-      Welcome to BTT Pay!
-    </div>
+    <Routes>
+      <Route path="/" element={<Landing />}></Route>
+    </Routes>
   );
 }
 
