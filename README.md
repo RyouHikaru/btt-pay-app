@@ -1,3 +1,5 @@
-# BTT Pay (Front-end)
+# BTT Pay
 
-This application serves as the front-end of BTT Pay, built using React JS and Tailwind CSS.
+![BTT Coin Logo](./src/img/btt-pay-logo.png)
+
+BTT Pay is an e-wallet web application that let users manage their BTT Coins, anywhere, online. This project is made for Big Trading Traders built using React JS and Tailwind CSS.
