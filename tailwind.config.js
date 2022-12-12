@@ -12,7 +12,6 @@ module.exports = {
       },
       keyframes: {
         'slide-out': {
-          '0%': {},
           '100%': {
             top: '-0.75rem',
             backgroundColor: 'rgb(245 245 244)',
