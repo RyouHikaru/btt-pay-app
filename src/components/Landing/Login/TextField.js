@@ -1,4 +1,4 @@
-const TextField = ({ type, name, text, handleChange, isValid, isEmpty, setIsValid}) => {
+const TextField = ({ type, name, text, handleChange, isValid, isEmpty }) => {
 
   const getInputStyle = (isValid) => {
     const validStyles = "peer rounded-md border-2 border-stone-800 border-solid p-4 w-full bg-stone-100";
@@ -20,7 +20,7 @@ const TextField = ({ type, name, text, handleChange, isValid, isEmpty, setIsVali
   return (
     <div className="relative">
       <div className="bg-stone-100"></div>
-      <input className={getInputStyle(isValid)} name={name} type={type} onChange={handleChange} onFocus={() => setIsValid(true)} />
+      <input className={getInputStyle(isValid)} name={name} type={type} onChange={handleChange} />
       <label className={getLabelStyle(isValid)} htmlFor={name}>{text}</label>
     </div>
   )
