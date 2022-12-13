@@ -3,9 +3,10 @@ import { useForm } from 'react-hook-form';
 import Button from "../Button";
 import TextField from './TextField';
 import { 
-  firstNameValidation, lastNameValidation, emailValidation, 
-  usernameValidation, passwordValidation, matchPasswordValidation
-} from '../../../validation/Validations';
+  firstNameValidation, lastNameValidation, 
+  emailValidation, usernameValidation, 
+  passwordValidation, matchPasswordValidation 
+} from './validations';
 
 
 const Registration = () => {
