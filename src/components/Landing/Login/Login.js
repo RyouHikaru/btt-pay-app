@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TextField from "./TextField";
 import ErrorMessage from "../../Error/ErrorMessage";
@@ -16,7 +16,7 @@ const Login = () => {
       setErrorMsg('Please input your username and password.');
       setIsValid(false);
     }
-    else if (data.username !== "user" && data.password !== "user") { // TODO: Fetch from backend
+    else if (data.username !== 'user' || data.password !== 'user') { // TODO: Fetch from backend
       setErrorMsg('You have entered invalid credentials.');
       setIsValid(false);
     }
@@ -33,8 +33,10 @@ const Login = () => {
       ...previousState, [name]: value
     }));
 
-    if (data.length !== 0)
+    if (data.length !== 0) {
       setIsValid(true);
+      setErrorMsg(null);
+    }
   }
   
   return (
@@ -50,9 +52,9 @@ const Login = () => {
             type="password" name="password" text="Password" handleChange={handleInputChange} 
             isEmpty={data.password.length === 0} isValid={isValid} 
           />
-          <Button isValid={isValid} text="Sign In" />
+          <Button text="Sign In" />
+          <ErrorMessage message={errorMsg} />
         </form>
-        <ErrorMessage isValid={isValid} message={errorMsg} />
         <nav>
           <ul className="flex flex-col gap-2 mt-10">
             <li className="hover:opacity-75 text-sm underline"><Link to="registration">Sign Up</Link></li>

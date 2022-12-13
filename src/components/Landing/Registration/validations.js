@@ -1,6 +1,6 @@
 // TODO: Back-end Validators
 const isEmailExisting = email => ['user@gmail.com', 'cjreblora@gmail.com'].includes(email);
-const isUsernameExisting = username => ['cjreblora', 'CJReblora'].includes(username);
+const isUsernameExisting = username => ['user', 'cjreblora'].includes(username);
 
 // Error Messages
 const required = field => `Please enter your ${field}.`;
@@ -104,7 +104,7 @@ export const passwordValidation = {
 export const matchPasswordValidation = (password) => {
   return {
     validate: {
-      isConfirmed: v => password.length > 0 && v.length > 0 || MATCH_PW_CONFIRM_MSG,
+      isConfirmed: v => (password.length > 0 && v.length > 0) || MATCH_PW_CONFIRM_MSG,
       isEqual: v => password === v || MATCH_PW_MSG
     }
   }

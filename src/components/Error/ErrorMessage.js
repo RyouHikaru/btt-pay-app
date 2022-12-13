@@ -1,6 +1,6 @@
-const ErrorMessage = ({ isValid, message }) => {
+const ErrorMessage = ({ message }) => {
   return (
-    <p className={!isValid ? "text-red-500 text-sm" : "hidden"}>{message}</p>
+    <p className={!!message ? "text-red-500 text-sm" : "hidden"}>{message}</p>
   )
 }
 
