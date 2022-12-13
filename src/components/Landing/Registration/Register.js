@@ -7,10 +7,28 @@ import {
   usernameValidation, passwordValidation, matchPasswordValidation
 } from '../../../validation/Validations';
 
+
 const Registration = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
-    criteriaMode: 'all'
+    criteriaMode: 'all',
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      username: '',
+      password: '',
+      matchPassword: '',
+    }
   });
+
+  const watchData = {
+    firstName: watch('firstName'),
+    lastName: watch('lastName'),
+    email: watch('email'),
+    username: watch('username'),
+    password: watch('password'),
+    matchPassword: watch('matchPassword'),
+  }
 
   const onSubmit = data => {
     console.log(data);
@@ -24,37 +42,37 @@ const Registration = () => {
           <TextField 
             type="text" name="firstName" text="First name" register={register} 
             validation={firstNameValidation} errors={errors}
-            hasContent={watch('firstName') !== undefined ? watch('firstName').length !== 0 : false }
+            hasContent={watchData.firstName.length > 0}
           />
 
           <TextField 
             type="text" name="lastName" text="Last name" register={register} 
             validation={lastNameValidation} errors={errors}
-            hasContent={watch('lastName') !== undefined ? watch('lastName').length !== 0 : false }
+            hasContent={watchData.lastName.length > 0}
           />
 
           <TextField 
             type="text" name="email" text="Email address" register={register} 
             validation={emailValidation} errors={errors}
-            hasContent={watch('email') !== undefined ? watch('email').length !== 0 : false }
+            hasContent={watchData.email.length > 0}
           />
 
           <TextField 
             type="text" name="username" text="Username" register={register} 
             validation={usernameValidation} errors={errors}
-            hasContent={watch('username') !== undefined ? watch('username').length !== 0 : false }
+            hasContent={watchData.username.length > 0}
           />
 
           <TextField 
             type="password" name="password" text="Password" register={register} 
             validation={passwordValidation} errors={errors}
-            hasContent={watch('password') !== undefined ? watch('password').length !== 0 : false }
+            hasContent={watchData.password.length > 0}
           />
 
           <TextField 
             type="password" name="matchPassword" text="Confirm password" register={register} 
-            validation={matchPasswordValidation(watch('password'))} errors={errors}
-            hasContent={watch('matchPassword') !== undefined ? watch('matchPassword').length !== 0 : false }
+            validation={matchPasswordValidation(watchData.password)} errors={errors}
+            hasContent={watchData.matchPassword?.length > 0}
           />
 
           <Button text="Sign Up" />

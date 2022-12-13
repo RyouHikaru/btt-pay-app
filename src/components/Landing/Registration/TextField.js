@@ -3,10 +3,10 @@ import { ErrorMessage } from "@hookform/error-message";
 
 const TextField = ({ type, name, text, register, errors, validation, hasContent }) => {
   const [isValid, setIsValid] = useState(true);
-  const error = errors[name];
+  const error = errors?.[name];
 
   useEffect(() => {
-    setIsValid(error === undefined);
+    setIsValid(!error);
   }, [error])
 
   const getInputStyle = () => {

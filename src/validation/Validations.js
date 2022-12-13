@@ -1,24 +1,27 @@
+// TODO: Back-end Validators
+const isEmailExisting = email => ['user@gmail.com', 'cjreblora@gmail.com'].includes(email);
+const isUsernameExisting = username => ['cjreblora', 'CJReblora'].includes(username);
+
 // Error Messages
 const required = field => `Please enter your ${field}.`;
 const range = (from, to) => `Please use between ${from} and ${to} characters.`
-
-const NAME_MSG = "Please use alphabetical characters only."
+const NAME_MSG = "Please use alphabetical characters only.";
 const NAME_RANGE_MSG = range(2, 20);
-const EMAIL_MSG = "Please enter a valid email address."
+const EMAIL_MSG = "Please enter a valid email address.";
+const EMAIL_TAKEN_MSG = "Email is already in use.";
 const USERNAME_RANGE_MSG = range(6, 20);
-const USERNAME_MSG = "Please use alphanumeric characters and underscore ( _ ) only."
+const USERNAME_MSG = "Please use alphanumeric characters and underscore ( _ ) only.";
+const USERNAME_TAKEN_MSG = "Username is already taken.";
 const PASSWORD_RANGE_MSG = range(8, 30);
-const PASSWORD_MSG = "Please make sure to have at least one (1) uppercase, lowercase, numeric, and special character."
+const PASSWORD_MSG = "Please make sure to have at least one (1) uppercase, lowercase, numeric, and special character.";
 const MATCH_PW_MSG = "Password does not match.";
+const MATCH_PW_CONFIRM_MSG = "Please confirm your password.";
 
 // Patterns
-const NAME_PATTERN = /^[A-Za-z\s]+$/i;
-const EMAIL_PATTERN = /^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/i;
-const USERNAME_PATTERN = /^([a-zA-Z0-9_])+$/i;
-const PASSWORD_PATTERN = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[`~!@#$%^&*()_|+\-=?;:'",.<>{}[\]\\/]).*$/i;
-
-const matchPasswordPattern = pattern => new RegExp(`^${pattern}$`);
-
+const NAME_PATTERN = /^[A-Za-z\s]+$/;
+const EMAIL_PATTERN = /^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/;
+const USERNAME_PATTERN = /^([a-zA-Z0-9_])+$/;
+const PASSWORD_PATTERN = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[`~!@#$%^&*()_|+\-=?;:'",.<>{}[\]\\/]).*$/;
 
 export const firstNameValidation = {
   required: required('first name'),
@@ -57,6 +60,9 @@ export const emailValidation = {
   pattern: {
     value: EMAIL_PATTERN,
     message: EMAIL_MSG
+  },
+  validate: {
+    isAvailable: v => !isEmailExisting(v) || EMAIL_TAKEN_MSG
   }
 }
 
@@ -73,6 +79,9 @@ export const usernameValidation = {
   pattern: {
     value: USERNAME_PATTERN,
     message: USERNAME_MSG
+  },
+  validate: {
+    isAvailable: v => !isUsernameExisting(v) || USERNAME_TAKEN_MSG
   }
 }
 
@@ -92,12 +101,11 @@ export const passwordValidation = {
   },
 }
 
-export const matchPasswordValidation = (pattern) => {
+export const matchPasswordValidation = (password) => {
   return {
-    required: MATCH_PW_MSG,
-    pattern: {
-      value: matchPasswordPattern(pattern),
-      message: MATCH_PW_MSG
+    validate: {
+      isConfirmed: v => password.length > 0 && v.length > 0 || MATCH_PW_CONFIRM_MSG,
+      isEqual: v => password === v || MATCH_PW_MSG
     }
   }
 }

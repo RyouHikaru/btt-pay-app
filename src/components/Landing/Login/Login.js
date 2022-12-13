@@ -16,7 +16,7 @@ const Login = () => {
       setErrorMsg('Please input your username and password.');
       setIsValid(false);
     }
-    else if (data.username !== "user" && data.password !== "user") {
+    else if (data.username !== "user" && data.password !== "user") { // TODO: Fetch from backend
       setErrorMsg('You have entered invalid credentials.');
       setIsValid(false);
     }
