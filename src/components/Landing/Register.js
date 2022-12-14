@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import Button from "../Button";
-import TextField from './TextField';
+import Button from "./Button";
+import TextField from './RegisterTextField';
 import { 
   firstNameValidation, lastNameValidation, 
   emailValidation, usernameValidation, 
@@ -10,6 +10,7 @@ import {
 
 
 const Registration = () => {
+  const redirect = useNavigate();
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     criteriaMode: 'all',
     defaultValues: {
@@ -31,15 +32,16 @@ const Registration = () => {
     matchPassword: watch('matchPassword'),
   }
 
-  const onSubmit = data => {
-    console.log(data);
+  // FIXME: Use API
+  const signUp = data => {
+    redirect('/');
   };
 
   return (
     <section className="flex-grow flex items-center px-5 py-10 sm:justify-center md:px-24">
       <div className="flex flex-col gap-8 p-5 w-full bg-stone-100 rounded-md opacity-90 shadow-2xl md:max-w-lg">
         <h1 className="text-2xl font-semibold">Registration</h1>
-        <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit(signUp)}>
           <TextField 
             type="text" name="firstName" text="First name" register={register} 
             validation={firstNameValidation} errors={errors}
