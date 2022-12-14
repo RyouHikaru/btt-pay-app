@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ErrorMessage } from "@hookform/error-message";
 
-const TextField = ({ type, name, text, register, errors, validation, hasContent }) => {
+const RegisterTextField = ({ type, name, text, register, errors, validation, hasContent }) => {
   const [isValid, setIsValid] = useState(true);
   const error = errors?.[name];
 
@@ -39,4 +39,4 @@ const TextField = ({ type, name, text, register, errors, validation, hasContent 
   )
 }
 
-export default TextField;
+export default RegisterTextField;

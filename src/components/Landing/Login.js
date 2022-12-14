@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TextField from "./TextField";
-import ErrorMessage from "../../Error/ErrorMessage";
-import Button from "../Button";
+import ErrorMessage from "../Error/ErrorMessage";
+import Button from "./Button";
 
 const Login = () => {
   const [data, setData] = useState({ username: '', password: '' });
@@ -33,10 +33,8 @@ const Login = () => {
       ...previousState, [name]: value
     }));
 
-    if (data.length !== 0) {
-      setIsValid(true);
-      setErrorMsg(null);
-    }
+    setIsValid(true);
+    setErrorMsg(null);
   }
   
   return (

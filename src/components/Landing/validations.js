@@ -13,7 +13,7 @@ const USERNAME_RANGE_MSG = range(6, 20);
 const USERNAME_MSG = "Please use alphanumeric characters and underscore ( _ ) only.";
 const USERNAME_TAKEN_MSG = "Username is already taken.";
 const PASSWORD_RANGE_MSG = range(8, 30);
-const PASSWORD_MSG = "Please make sure to have at least one (1) uppercase, lowercase, numeric, and special character.";
+const PASSWORD_MSG = "Password must have at least one (1) each: uppercase, lowercase, numeric, and special character.";
 const MATCH_PW_MSG = "Password does not match.";
 const MATCH_PW_CONFIRM_MSG = "Please confirm your password.";
 
