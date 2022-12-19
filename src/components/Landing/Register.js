@@ -1,4 +1,4 @@
-import { useStoreState, useStoreActions, action } from 'easy-peasy';
+import { useStoreActions } from 'easy-peasy';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Button from "./Button";
