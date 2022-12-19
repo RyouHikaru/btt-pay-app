@@ -1,18 +1,15 @@
-import { createStore, StoreProvider, action } from 'easy-peasy';
+import { createStore, action } from 'easy-peasy';
 
 const model = {
-  user: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    username: '',
+  showModal: {
+    header: '',
+    body: '',
+    visible: false,
+    type: 'INFO',
+    action: null
   },
-  setUser: action((state, payload) => {
-    state.user = payload;
-  }),
-  errorMsg: '',
-  setErrorMsg: action((state, payload) => {
-    state.errorMsg = payload;
+  setShowModal: action((state, payload) => {
+    state.showModal = payload;
   })
 };
 

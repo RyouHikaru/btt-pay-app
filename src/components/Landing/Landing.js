@@ -1,3 +1,4 @@
+import Modal from '../Main/Modal';
 import Header from './Header';
 import Footer from './Footer';
 import { Outlet } from 'react-router-dom';
@@ -8,6 +9,7 @@ const Landing = () => {
       <Header />
       <Outlet />
       <Footer />
+      <Modal />
     </div>
   )
 }

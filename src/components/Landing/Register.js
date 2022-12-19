@@ -1,3 +1,4 @@
+import { useStoreActions } from 'easy-peasy';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Button from "./Button";
@@ -10,6 +11,7 @@ import {
 
 
 const Registration = () => {
+  const setShowModal = useStoreActions((action) => action.setShowModal);
   const redirect = useNavigate();
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     criteriaMode: 'all',
@@ -32,16 +34,45 @@ const Registration = () => {
     matchPassword: watch('matchPassword'),
   }
 
-  // FIXME: Use API
-  const signUp = data => {
-    redirect('/');
+  const signUp = (data) => {
+    try {
+
+      // Call Sign Up API
+      
+      setShowModal({
+        header: 'Registration',
+        body: 'Registered successfully.',
+        visible: true,
+        type: 'INFO'
+      });
+
+    } catch(err) {
+      console.log(`Error: ${err.message}`);
+    } finally {
+      redirect("/");
+    }
+  }
+
+  const showConfirmation = (data) => {
+
+    setShowModal({
+      header: 'Registration',
+      body: 'Are you sure you want to register?',
+      visible: true,
+      type: 'CONFIRM',
+      action: {
+        callback: signUp,
+        args: data
+      }
+    });
+    
   };
 
   return (
     <section className="flex-grow flex items-center px-5 py-10 sm:justify-center md:px-24">
       <div className="flex flex-col gap-8 p-5 w-full bg-stone-100 rounded-md opacity-90 shadow-2xl md:max-w-lg">
         <h1 className="text-2xl font-semibold">Registration</h1>
-        <form className="flex flex-col gap-5" onSubmit={handleSubmit(signUp)}>
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit(showConfirmation)}>
           <TextField 
             type="text" name="firstName" text="First name" register={register} 
             validation={firstNameValidation} errors={errors}
