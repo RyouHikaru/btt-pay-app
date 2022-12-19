@@ -19,17 +19,22 @@ const Modal = () => {
     let modalClass = "h-screen w-screen fixed bg-stone-900/80 hidden";
     return !showModal.visible ? modalClass : modalClass.replace('hidden', '');
   }
+
+  const getModalBodyClass = (type) => {
+    let modalBodyClass = 'text-center text-stone-800'
+    return !type === 'ERROR' ? modalBodyClass : modalBodyClass.replace('text-stone-800', 'text-red-500')
+  }
   
-  const getModalTypeClass = (type) => {
+  const getModalButtonClass = (type) => {
     switch(type) {
       case 'CONFIRM':
         return <div className='flex items-center gap-10'>
-                  <button onClick={handleConfirmation} value={"YES"} className='w-3/4 p-2 bg-green-800 text-slate-100 rounded-md hover:opacity-75'>Yes</button>
-                  <button onClick={handleConfirmation} value={"NO"} className='w-3/4 p-2 bg-red-700 text-slate-100 rounded-md hover:opacity-75'>No</button>
+                  <button onClick={handleConfirmation} value={"YES"} className='w-3/4 p-2 text-stone-800 border-2 border-solid border-stone-800 rounded-md hover:bg-stone-800 hover:text-stone-100'>Yes</button>
+                  <button onClick={handleConfirmation} value={"NO"} className='w-3/4 p-2 text-stone-800 border-2 border-solid border-stone-800 rounded-md hover:bg-stone-800 hover:text-stone-100'>No</button>
                 </div>
       default:
         return <div className='flex justify-center'>
-                <button onClick={handleConfirmation} className='w-1/4 p-1 bg-stone-800 text-slate-100 rounded-md hover:opacity-75'>Close</button>
+                <button onClick={handleConfirmation} className='w-1/4 p-1 text-stone-800 border-2 border-solid border-stone-800 rounded-md hover:bg-stone-800 hover:text-stone-100'>Close</button>
                </div>
     }
   }
@@ -50,10 +55,10 @@ const Modal = () => {
         <div>
           <h1 className='text-xl font-semibold'>{showModal.header}</h1>
         </div>
-        <div className='text-center'>
+        <div className={getModalBodyClass(showModal.type)}>
           <p>{showModal.body}</p>
         </div>
-        {getModalTypeClass(showModal.type)}
+        {getModalButtonClass(showModal.type)}
       </div>
     </div>
   )
