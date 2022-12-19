@@ -1,3 +1,4 @@
+import { useStoreActions, useStoreState } from 'easy-peasy';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TextField from "./TextField";
@@ -5,24 +6,21 @@ import ErrorMessage from "../Error/ErrorMessage";
 import Button from "./Button";
 
 const Login = () => {
+  const errorMsg = useStoreState((state) => state.errorMsg);
+  const setErrorMsg = useStoreActions((action) => action.setErrorMsg);
+  const login = useStoreActions((action) => action.login);
+
   const [data, setData] = useState({ username: '', password: '' });
   const [isValid, setIsValid] = useState(true);
-  const [errorMsg, setErrorMsg] = useState(null);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (data.username.length === 0 || data.password.length === 0) {
       setErrorMsg('Please input your username and password.');
       setIsValid(false);
-    }
-    else if (data.username !== 'user' || data.password !== 'user') { // TODO: Fetch from backend
-      setErrorMsg('You have entered invalid credentials.');
-      setIsValid(false);
-    }
-    else {
-      setErrorMsg(null);
-      setIsValid(true);
+    } else {
+      setIsValid(await login(data));
     }
   }
 
