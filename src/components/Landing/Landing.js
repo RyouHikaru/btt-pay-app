@@ -1,4 +1,4 @@
-import Modal from '../Main/Modal';
+import Modal from '../Modal';
 import Header from './Header';
 import Footer from './Footer';
 import { Outlet } from 'react-router-dom';

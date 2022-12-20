@@ -11,6 +11,7 @@ import {
 
 
 const Registration = () => {
+  const registerUser = useStoreActions((action) => action.register);
   const setShowModal = useStoreActions((action) => action.setShowModal);
   const redirect = useNavigate();
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -35,29 +36,15 @@ const Registration = () => {
   }
 
   const signUp = (data) => {
-    try {
-
-      // Call Sign Up API
-      
-      setShowModal({
-        header: 'Registration',
-        body: 'Registered successfully.',
-        visible: true,
-        type: 'INFO'
-      });
-
-    } catch(err) {
-      console.log(`Error: ${err.message}`);
-    } finally {
-      redirect("/");
-    }
+    registerUser(data);
+    redirect("/");
   }
 
   const showConfirmation = (data) => {
 
     setShowModal({
       header: 'Registration',
-      body: 'Are you sure you want to register?',
+      body: 'By confirming, you have agreed that all details are valid.',
       visible: true,
       type: 'CONFIRM',
       action: {

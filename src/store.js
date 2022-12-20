@@ -33,6 +33,22 @@ const model = {
     } finally {
       return successful;
     }
+  }),
+  register: thunk(async (actions, request, helper) => {
+    const { setShowModal } = helper.getStoreActions();
+
+    try {
+      const response = await api.post('/api/auth/register', request);
+
+      setShowModal({
+        header: 'Registration',
+        body: response.data.message,
+        visible: true,
+        type: 'INFO'
+      })
+    } catch(e) {
+      console.log(e);
+    }
   })
 };
 

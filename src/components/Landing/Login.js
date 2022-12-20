@@ -2,7 +2,7 @@ import { useStoreActions, useStoreState } from 'easy-peasy';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TextField from "./TextField";
-import ErrorMessage from "../Error/ErrorMessage";
+import ErrorMessage from "../ErrorMessage";
 import Button from "./Button";
 
 const Login = () => {
