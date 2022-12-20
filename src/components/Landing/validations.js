@@ -1,9 +1,36 @@
-// TODO: Back-end Validators
-const isEmailExisting = email => ['user@gmail.com', 'cjreblora@gmail.com'].includes(email);
-const isUsernameExisting = username => ['user', 'cjreblora'].includes(username);
+import api from "../../services/api";
+
+const isEmailExisting = async (email) => {
+  let isExisting = false;
+  try {
+    const URL = '/api/auth/register/validate-email?';
+
+    const response = await api.post(`${URL}email=${email}`);
+    isExisting = response.data;
+  } catch(e) {
+    console.log(e);
+  } finally {
+    return isExisting;
+  }
+};
+
+const isUsernameExisting = async (username) => {
+  let isExisting = false;
+  try {
+    const URL = '/api/auth/register/validate-username?';
+
+    const response = await api.post(`${URL}username=${username}`);
+    isExisting = response.data;
+  } catch(e) {
+    console.log(e);
+  } finally {
+    return isExisting;
+  }
+};
+
 
 // Error Messages
-const required = field => `Please enter your ${field}.`;
+const required = (field) => `Please enter your ${field}.`;
 const range = (from, to) => `Please use between ${from} and ${to} characters.`
 const NAME_MSG = "Please use alphabetical characters only.";
 const NAME_RANGE_MSG = range(2, 20);
@@ -62,7 +89,7 @@ export const emailValidation = {
     message: EMAIL_MSG
   },
   validate: {
-    isAvailable: v => !isEmailExisting(v) || EMAIL_TAKEN_MSG
+    isAvailable: async (v) => ! await isEmailExisting(v) || EMAIL_TAKEN_MSG
   }
 }
 
@@ -81,7 +108,7 @@ export const usernameValidation = {
     message: USERNAME_MSG
   },
   validate: {
-    isAvailable: v => !isUsernameExisting(v) || USERNAME_TAKEN_MSG
+    isAvailable: async (v) => ! await isUsernameExisting(v) || USERNAME_TAKEN_MSG
   }
 }
 
@@ -104,8 +131,8 @@ export const passwordValidation = {
 export const matchPasswordValidation = (password) => {
   return {
     validate: {
-      isConfirmed: v => (password.length > 0 && v.length > 0) || MATCH_PW_CONFIRM_MSG,
-      isEqual: v => password === v || MATCH_PW_MSG
+      isConfirmed: (v) => (password.length > 0 && v.length > 0) || MATCH_PW_CONFIRM_MSG,
+      isEqual: (v) => password === v || MATCH_PW_MSG
     }
   }
 }

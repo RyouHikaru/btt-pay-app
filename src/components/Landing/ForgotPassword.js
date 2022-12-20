@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import TextField from './TextField';
-import ErrorMessage from "../Error/ErrorMessage";
+import ErrorMessage from "../ErrorMessage";
 import Button from "./Button";
 
 const ForgotPassword = () => {
