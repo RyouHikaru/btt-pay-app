@@ -1,7 +1,10 @@
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import logo from '../../img/logo192.png';
 
+
 const Header = () => {
+  const path = useLocation().pathname;
+
   return (
     <header className="flex justify-between items-center p-5 bg-stone-800 text-stone-100 md:px-10">
       <a href='/'>
@@ -13,7 +16,8 @@ const Header = () => {
       <nav>
         <ul className='flex gap-8 items-center'>
           <li className="hover:opacity-75"><Link to="/about">ABOUT</Link></li>
-          <li className="hover:opacity-75"><Link to="/contact">CONTACT US</Link></li>
+          <li className="hover:opacity-75"><Link to="/contact">CONTACT</Link></li>
+          {path !== '/' ? <li className="hover:opacity-75"><Link to="/">SIGN IN</Link></li> : null}
         </ul>
       </nav>
     </header>
