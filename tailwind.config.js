@@ -16,11 +16,16 @@ module.exports = {
             top: '-0.75rem',
             backgroundColor: 'rgb(245 245 244)',
             transform: 'scale(0.85)'
-          },
-        }
+          }
+        },
+        'show-menu': {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' },
+        },
       },
       animation: {
-        'slide-out': 'slide-out 0.2s ease-in-out forwards'
+        'slide-out': 'slide-out 0.2s ease-in-out forwards',
+        'show-menu': 'show-menu 0.2s ease-in-out forwards'
       }
     },
   },
