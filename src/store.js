@@ -2,9 +2,9 @@ import { createStore, action, thunk } from 'easy-peasy';
 import api from './services/api';
 
 const model = {
-  userSession: {},
+  userSession: null,
   setUserSession: action((state, payload) => {
-    state.useSession = payload;
+    state.userSession = payload;
   }),
   errorMsg: null,
   setErrorMsg: action((state, payload) => {
@@ -19,6 +19,10 @@ const model = {
   },
   setShowModal: action((state, payload) => {
     state.showModal = payload;
+  }),
+  isMobileMenuClicked: false,
+  setIsMobileMenuClicked: action((state, payload) => {
+    state.isMobileMenuClicked = payload;
   }),
   login: thunk(async (actions, request, helper) => {
     const { setErrorMsg, setUserSession } = helper.getStoreActions();

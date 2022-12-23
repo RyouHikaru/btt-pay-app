@@ -1,14 +1,18 @@
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TextField from "./TextField";
 import ErrorMessage from "../ErrorMessage";
 import Button from "./Button";
 
 const Login = () => {
+  const redirect = useNavigate();
   const errorMsg = useStoreState((state) => state.errorMsg);
   const setErrorMsg = useStoreActions((action) => action.setErrorMsg);
   const login = useStoreActions((action) => action.login);
+
+  // Temporary
+  const setUserSession = useStoreActions((action) => action.setUserSession);
 
   const [data, setData] = useState({ username: '', password: '' });
   const [isValid, setIsValid] = useState(true);
@@ -20,7 +24,10 @@ const Login = () => {
       setErrorMsg('Please input your username and password.');
       setIsValid(false);
     } else {
-      setIsValid(await login(data));
+      // setIsValid(await login(data)); Temporarily commented out
+      setIsValid(true);
+      setUserSession([]);
+      redirect('home');
     }
   }
 
