@@ -6,6 +6,7 @@ import ForgotPassword from './components/Landing/ForgotPassword';
 import About from './components/Landing/About';
 import Home from './components/Main/Home';
 import Missing from './components/Missing';
+import Logout from './components/Main/Logout';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="home" element={<Home /> }>
           {/* TODO: Insert more Routes */}
         </Route>
-        
+        <Route path="logout" element={<Logout />} />
         <Route path='*' element={<Missing />} />
       </Route>
     </Routes>

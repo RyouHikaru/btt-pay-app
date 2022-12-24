@@ -11,9 +11,6 @@ const Login = () => {
   const setErrorMsg = useStoreActions((action) => action.setErrorMsg);
   const login = useStoreActions((action) => action.login);
 
-  // Temporary
-  const setUserSession = useStoreActions((action) => action.setUserSession);
-
   const [data, setData] = useState({ username: '', password: '' });
   const [isValid, setIsValid] = useState(true);
 
@@ -24,9 +21,7 @@ const Login = () => {
       setErrorMsg('Please input your username and password.');
       setIsValid(false);
     } else {
-      // setIsValid(await login(data)); Temporarily commented out
-      setIsValid(true);
-      setUserSession([]);
+      setIsValid(await login(data));
       redirect('home');
     }
   }
