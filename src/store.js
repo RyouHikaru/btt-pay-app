@@ -2,9 +2,14 @@ import { createStore, action, thunk } from 'easy-peasy';
 import api from './services/api';
 
 const model = {
-  userSession: null,
+  userSession: sessionStorage.getItem('userSession'),
   setUserSession: action((state, payload) => {
     state.userSession = payload;
+    sessionStorage.setItem('userSession', payload);
+  }),
+  logout: action((state) => {
+    state.userSession = null;
+    sessionStorage.clear();
   }),
   errorMsg: null,
   setErrorMsg: action((state, payload) => {
@@ -29,8 +34,18 @@ const model = {
     let successful = true;
 
     try {
-      const response = await api.post('/api/auth/login', request);
-      setUserSession(response.data);
+      // const response = await api.post('/api/auth/login', request);
+      // setUserSession(response.data);
+
+      // Temporary
+      setUserSession({
+        token: 'bttPayToken',
+        type: 'Bearer',
+        id: 1,
+        username: 'user',
+        email: 'user@email.com'
+      });
+      
     } catch(e) {
       setErrorMsg(e.response.data.message);
       successful = false;
