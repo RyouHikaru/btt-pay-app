@@ -32,6 +32,7 @@ const Header = () => {
         <ul className='flex gap-8 items-center'>
           <li className="hover:opacity-75"><Link to="/about">ABOUT</Link></li>
           <li className="hover:opacity-75"><Link to="/contact">CONTACT</Link></li>
+          {userSession ? <li className="hover:opacity-75"><Link to="/help">HELP</Link></li> : null}
           {path !== '/' && !userSession ? <li className="hover:opacity-75"><Link to="/">LOGIN</Link></li> : null}
         </ul>
       </nav>

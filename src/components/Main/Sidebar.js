@@ -7,7 +7,7 @@ const Sidebar = () => {
   const path = useLocation().pathname;
 
   const getSidebarStyle = () => {
-    const excludedPaths = ['/about', '/contact'];
+    const excludedPaths = ['/about', '/contact', '/help'];
     let baseStyle = "flex-grow hidden flex-col justify-between min-w-[20rem] max-w-[20rem] bg-stone-800 text-stone-100 border-t-2 border-stone-900 border-solid sm:flex";
 
     return excludedPaths.includes(path) ? baseStyle.replace('sm:flex', 'hidden') : baseStyle;
@@ -26,10 +26,10 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="hover:opacity-75">
-          <Link to='/accounts'>
+          <Link to='/account'>
             <div className="flex gap-2">
               <span className="text-2xl"><MdAccountBalanceWallet /></span>
-              <span>ACCOUNTS</span>
+              <span>ACCOUNT</span>
             </div>
           </Link>
         </li>
