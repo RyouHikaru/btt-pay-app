@@ -2,7 +2,9 @@ import { createStore, action, thunk } from 'easy-peasy';
 import api from './services/api';
 
 const model = {
-  userSession: JSON.parse(sessionStorage.userSession),
+  userSession: 
+    sessionStorage.userSession ? 
+    JSON.parse(sessionStorage.userSession) : null,
   setUserSession: action((state, payload) => {
     state.userSession = payload;
     sessionStorage.setItem('userSession', JSON.stringify(payload));
