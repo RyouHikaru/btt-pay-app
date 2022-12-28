@@ -1,10 +1,11 @@
-import { useStoreState } from "easy-peasy";
+import { useStoreActions, useStoreState } from "easy-peasy";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
 
 const Home = () => {
   const redirect = useNavigate();
   const userSession = useStoreState((state) => state.userSession);
+  const setActiveMenu = useStoreActions((action) => action.setActiveMenu);
 
   useEffect(() => {
     if (!userSession)
@@ -18,8 +19,8 @@ const Home = () => {
         <h2 className="text-2xl font-semibold">Welcome to BTT Pay!</h2>
         <ul className="grid gap-5 p-5 rounded-md shadow-md border-2 border-stone-500 border-solid list-disc list-inside">
           <h3 className="text-lg font-bold">Quick Start:</h3>
-          <li className="text-md">If you want to check your balance, please navigate to <span className="italic font-bold hover:opacity-75"><Link to="/account">ACCOUNT</Link></span>.</li>
-          <li className="text-md">If you want to use a particular service, please navigate to <span className="italic font-bold hover:opacity-75"><Link to="/services">SERVICES</Link></span>.</li><hr />
+          <li className="text-md">If you want to check your balance, please navigate to <span className="italic font-bold hover:opacity-75"><Link onClick={() => setActiveMenu('accounts')} to="/accounts">ACCOUNTS</Link></span>.</li>
+          <li className="text-md">If you want to use a particular service, please navigate to <span className="italic font-bold hover:opacity-75"><Link onClick={() => setActiveMenu('services')} to="/services">SERVICES</Link></span>.</li><hr />
           <h3 className="text-md">For more information, please check out the <span className="italic font-bold hover:opacity-75"><Link to="/help">HELP</Link></span> section.</h3>
         </ul>
       </article>

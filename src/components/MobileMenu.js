@@ -1,9 +1,5 @@
 import { useStoreState, useStoreActions } from "easy-peasy";
-import { Link } from "react-router-dom";
-import { FaHome, FaHandHoldingUsd } from "react-icons/fa";
-import { BiLogIn, BiLogOut } from "react-icons/bi";
-import { MdAccountBalanceWallet } from "react-icons/md";
-import { IoIosSend, IoMdInformationCircle, IoIosHelpCircle } from "react-icons/io";
+import MobileMenuItem from "./Main/MobileMenuItem";
 
 const MobileHeader = () => {
   const isClicked = useStoreState((state) => state.isMobileMenuClicked);
@@ -23,86 +19,21 @@ const MobileHeader = () => {
     <nav className={getNavStyle()}>
       {userSession
       ? 
-      <ul onClick={handleClick} className="p-7 w-full flex flex-col gap-6 text-lg text-stone-800">
-        <li className="hover:opacity-75">
-          <Link to='/home'>
-            <div className="flex gap-2">
-              <span className="text-2xl"><FaHome /></span>
-              <span>HOME</span>
-            </div>
-          </Link>
-        </li>
-        <hr />
-        <li className="hover:opacity-75">
-          <Link to='/account'>
-            <div className="flex gap-2">
-              <span className="text-2xl"><MdAccountBalanceWallet /></span>
-              <span>ACCOUNT</span>
-            </div>
-          </Link>
-        </li>
-        <hr />
-        <li className="hover:opacity-75">
-          <Link to='/services'>
-            <div className="flex gap-2">
-              <span className="text-2xl"><FaHandHoldingUsd /></span>
-              <span>SERVICES</span>
-            </div>
-          </Link>
-        </li>
-        <hr />
-        <li className="hover:opacity-75">
-          <Link to='/logout'>
-            <div className="flex gap-2">
-              <span className="text-2xl"><BiLogOut /></span>
-              <span>LOGOUT</span>
-            </div>
-          </Link>
-        </li>
-        <hr />
+      <ul onClick={handleClick} className="w-full grid text-lg text-stone-800">
+        <MobileMenuItem text="home" />
+        <MobileMenuItem text="accounts" />
+        <MobileMenuItem text="services" />
+        <MobileMenuItem text="logout" />
       </ul>
       : null}
 
-      <ul onClick={handleClick} className="p-7 w-full flex flex-col gap-6 text-lg text-stone-800">
-        <li className="hover:opacity-75">
-          <Link to='/about'>
-            <div className="flex gap-2">
-              <span className="text-2xl"><IoMdInformationCircle /></span>
-              <span>ABOUT</span>
-            </div>
-          </Link>
-        </li>
-        <hr />
-        <li className="hover:opacity-75">
-          <Link to='/contact'>
-            <div className="flex gap-2">
-              <span className="text-2xl"><IoIosSend /></span>
-              <span>CONTACT</span>
-            </div>
-          </Link>
-        </li>
-        <hr />
-        <li className="hover:opacity-75">
-          <Link to='/help'>
-            <div className="flex gap-2">
-              <span className="text-2xl"><IoIosHelpCircle /></span>
-              <span>HELP</span>
-            </div>
-          </Link>
-        </li>
+      <ul onClick={handleClick} className="w-full grid text-lg text-stone-800">
+        <MobileMenuItem text="about" />
+        <MobileMenuItem text="contact" />
+        <MobileMenuItem text="help" />
         {!userSession
         ? 
-        <>
-          <hr />
-          <li className="hover:opacity-75">
-          <Link to='/'>
-            <div className="flex gap-2">
-              <span className="text-2xl"><BiLogIn /></span>
-              <span>LOGIN</span>
-            </div>
-          </Link>
-        </li>
-        </>
+        <MobileMenuItem text="login" />
         : null}
       </ul>
     </nav>

@@ -1,8 +1,12 @@
 import bttLogo from '../../img/btt-logo.png';
 import bttCoinLogo from '../../img/logo192.png';
 import bttPayLogo from '../../img/e-wallet.png'
+import { Link } from 'react-router-dom';
+import { useStoreState } from 'easy-peasy';
 
 const About = () => {
+  const userSession = useStoreState((state) => state.userSession);
+
   return (
     <section className="flex flex-col items-center md:p-10">
       <div className="flex flex-col gap-10 p-10 items-center bg-stone-100 opacity-90 shadow-2xl md:rounded-md md:items-center md:max-w-4xl">
@@ -49,6 +53,12 @@ const About = () => {
             </p>
           </div>
         </article>
+
+        {userSession ? 
+        <span className="text-lg underline">
+          <Link to="/home">Back to Home</Link>
+        </span> : null
+        }
       </div>
     </section>
   )
