@@ -10,9 +10,9 @@ const RegisterTextField = ({ type, name, text, register, errors, validation, has
   }, [error])
 
   const getInputStyle = () => {
-    const validStyles = "peer rounded-md border-2 border-stone-800 border-solid p-4 w-full bg-stone-100 focus:outline-none";
+    const validStyles = "peer rounded-md border-2 border-stone-500 border-solid p-4 w-full bg-stone-100 focus:outline-none";
     const inValidStyles = validStyles
-      .replace('border-stone-800', 'border-red-500')
+      .replace('border-stone-500', 'border-red-500')
       .concat(' ', 'text-red-500');
 
     return isValid ? validStyles : inValidStyles;

@@ -1,9 +1,9 @@
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { Link } from "react-router-dom";
-import { FaHome, FaHandHoldingUsd, FaInfoCircle } from "react-icons/fa";
+import { FaHome, FaHandHoldingUsd } from "react-icons/fa";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { MdAccountBalanceWallet } from "react-icons/md";
-import { IoIosSend } from "react-icons/io";
+import { IoIosSend, IoMdInformationCircle, IoIosHelpCircle } from "react-icons/io";
 
 const MobileHeader = () => {
   const isClicked = useStoreState((state) => state.isMobileMenuClicked);
@@ -34,10 +34,10 @@ const MobileHeader = () => {
         </li>
         <hr />
         <li className="hover:opacity-75">
-          <Link to='/accounts'>
+          <Link to='/account'>
             <div className="flex gap-2">
               <span className="text-2xl"><MdAccountBalanceWallet /></span>
-              <span>ACCOUNTS</span>
+              <span>ACCOUNT</span>
             </div>
           </Link>
         </li>
@@ -67,7 +67,7 @@ const MobileHeader = () => {
         <li className="hover:opacity-75">
           <Link to='/about'>
             <div className="flex gap-2">
-              <span className="text-2xl"><FaInfoCircle /></span>
+              <span className="text-2xl"><IoMdInformationCircle /></span>
               <span>ABOUT</span>
             </div>
           </Link>
@@ -78,6 +78,15 @@ const MobileHeader = () => {
             <div className="flex gap-2">
               <span className="text-2xl"><IoIosSend /></span>
               <span>CONTACT</span>
+            </div>
+          </Link>
+        </li>
+        <hr />
+        <li className="hover:opacity-75">
+          <Link to='/help'>
+            <div className="flex gap-2">
+              <span className="text-2xl"><IoIosHelpCircle /></span>
+              <span>HELP</span>
             </div>
           </Link>
         </li>
