@@ -1,5 +1,6 @@
 import { createStore, action, thunk } from 'easy-peasy';
 import api from './services/api';
+import jwtDecode from 'jwt-decode';
 
 const model = {
   userSession: 
@@ -36,18 +37,9 @@ const model = {
     let successful = true;
 
     try {
-      // const response = await api.post('/api/auth/login', request);
-      // setUserSession(response.data);
+      const response = await api.post('/api/auth/login', request);
+      setUserSession(response.data);
 
-      // Temporary
-      setUserSession({
-        token: 'bttPayToken',
-        type: 'Bearer',
-        id: 1,
-        username: 'user',
-        email: 'user@email.com'
-      });
-      
     } catch(e) {
       setErrorMsg(e.response.data.message);
       successful = false;
@@ -69,6 +61,26 @@ const model = {
       })
     } catch(e) {
       console.log(e);
+    }
+  }),
+  retrieveUserAccounts: thunk(async (actions, payload) => {
+    const token = payload;
+    const decodedToken = jwtDecode(token);
+    const id = decodedToken.userId;
+
+    let accounts = [];
+
+    try {
+      const URL = '/api/accounts/user?';
+      const response = await api.post(`${URL}id=${id}`, null, {
+        headers: { Authorization: `Bearer ${token}`}
+      });
+
+      accounts = response.data;
+    } catch(e) {
+      console.log(e);
+    } finally {
+      return accounts;
     }
   })
 };
