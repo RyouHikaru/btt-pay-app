@@ -21,8 +21,13 @@ const Login = () => {
       setErrorMsg('Please input your username and password.');
       setIsValid(false);
     } else {
-      setIsValid(await login(data));
-      redirect('home');
+      const loginResult = await login(data);
+
+      setIsValid(loginResult);
+      
+      if (loginResult) {
+        redirect('home');
+      }
     }
   }
 

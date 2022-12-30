@@ -6,7 +6,7 @@ const AccountCard = ({ text, acctNo, acctType, bal, isClicked, setIsClicked }) =
   
   const getCardStyle = () => {
     let baseStyle = "flex flex-col gap-5 p-5 shadown-sm bg-green-800 text-stone-50 rounded-md max-w-xl hover:brightness-125 hover:shadow-xl xl:max-h-64";
-    return acctType === "savings" ? baseStyle : baseStyle.replace('bg-green-800', 'bg-orange-800');
+    return acctType === "SAVINGS" ? baseStyle : baseStyle.replace('bg-green-800', 'bg-orange-800');
   }
 
   const formattedBal = () => {

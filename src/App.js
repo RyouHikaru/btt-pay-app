@@ -7,7 +7,7 @@ import About from './components/Landing/About';
 import Home from './components/Main/Home';
 import Missing from './components/Missing';
 import Logout from './components/Main/Logout';
-import Account from './components/Main/Account';
+import Accounts from './components/Main/Accounts';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path='forgot-password' element={<ForgotPassword />} />
         <Route path='about' element={<About />} />
         <Route path="home" element={<Home /> } />
-        <Route path="accounts" element={<Account /> } />
+        <Route path="accounts" element={<Accounts /> } />
         <Route path="logout" element={<Logout />} />
         <Route path='*' element={<Missing />} />
       </Route>
