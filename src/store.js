@@ -10,6 +10,10 @@ const model = {
     state.userSession = payload;
     sessionStorage.setItem('userSession', JSON.stringify(payload));
   }),
+  accounts: [],
+  setAccounts: action((state, payload) => {
+    state.accounts = payload;
+  }),
   logout: action((state) => {
     state.userSession = null;
     sessionStorage.clear();
@@ -58,17 +62,18 @@ const model = {
         body: response.data.message,
         visible: true,
         type: 'INFO'
-      })
+      });
     } catch(e) {
       console.log(e);
     }
   }),
-  retrieveUserAccounts: thunk(async (actions, payload) => {
+  retrieveUserAccounts: thunk(async (actions, payload, helper) => {
+    const { setAccounts } = helper.getStoreActions();
+
     const token = payload;
     const decodedToken = jwtDecode(token);
-    const id = decodedToken.userId;
 
-    let accounts = [];
+    const id = decodedToken.userId;
 
     try {
       const URL = '/api/accounts/user?';
@@ -76,11 +81,34 @@ const model = {
         headers: { Authorization: `Bearer ${token}`}
       });
 
-      accounts = response.data;
+      setAccounts(response.data);
     } catch(e) {
       console.log(e);
-    } finally {
-      return accounts;
+    }
+  }),
+  openAccount: thunk(async (actions, payload, helper) => {
+    const { setShowModal, retrieveUserAccounts } = helper.getStoreActions();
+    const { type, token } = payload;
+    const decodedToken = jwtDecode(token);
+    const id = decodedToken.userId;
+
+    try {
+      const data = { accountType: type, userId: id };
+
+      const response = await api.post('/api/accounts', data, {
+        headers: { Authorization: `Bearer ${token}`}
+      });
+
+      setShowModal({
+        header: 'Open Account',
+        body: response.data.message,
+        visible: true,
+        type: 'INFO'
+      });
+
+      retrieveUserAccounts(token);
+    } catch(e) {
+      console.log(e);
     }
   })
 };
