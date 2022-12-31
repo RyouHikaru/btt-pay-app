@@ -9,7 +9,10 @@ const Modal = () => {
       const action = showModal.action.callback;
       const data = showModal.action.args;
 
+      // Perform operation
       action(data);
+
+      resetModal();
     } else {
       resetModal();
     }
