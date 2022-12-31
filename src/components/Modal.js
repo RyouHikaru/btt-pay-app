@@ -58,7 +58,7 @@ const Modal = () => {
 
   return (
     <div className={getModalClass()}>
-      <div className='flex flex-col justify-between p-7 z-10 w-[400px] h-[200px] top-1/2 left-1/2 -mt-[200px] -ml-[200px] rounded-md shadow-2xl bg-white fixed'>
+      <div className='flex flex-col justify-between w-[350px] h-[250px] p-7 z-10 top-1/2 left-1/2 -mt-[200px] -ml-[175px] rounded-md shadow-2xl bg-white fixed sm:w-[400px] sm:-ml-[200px]'>
         <div>
           <h1 className='text-xl font-semibold'>{showModal.header}</h1>
         </div>
