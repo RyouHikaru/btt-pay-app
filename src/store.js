@@ -110,7 +110,52 @@ const model = {
     } catch(e) {
       console.log(e);
     }
-  })
+  }),
+  retrieveTransactions: thunk(async (actions, payload, helper) => {
+    // const { type, token } = payload;
+    // const decodedToken = jwtDecode(token);
+    // const id = decodedToken.userId;
+    let transactionList = [];
+
+    try {
+      // TODO: Add API call for retrieving Transactions
+      // const data = { accountType: type, userId: id };
+
+      // const response = await api.post('/api/accounts', data, {
+      //   headers: { Authorization: `Bearer ${token}`}
+      // });
+
+      // FIXME: Temporary
+      transactionList = [
+        {
+          id: 1,
+          transactionNumber: 'REF1000001',
+          details: 'Cash in from BTT Bank',
+          amount: '1000',
+          transactionType: 'CREDIT',
+          account: null,
+          metadata: {
+            dateCreated: '2023-01-01'
+          }
+        }, 
+        {
+          id: 2,
+          transactionNumber: 'REF1000002',
+          details: 'Buy Load',
+          amount: '420',
+          transactionType: 'DEBIT',
+          account: null,
+          metadata: {
+            dateCreated: '2023-01-02'
+          }
+        }
+      ]
+    } catch(e) {
+      console.log(e);
+    } finally {
+      return transactionList;
+    }
+  }),
 };
 
 export default createStore(model);

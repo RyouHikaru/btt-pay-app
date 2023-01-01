@@ -8,7 +8,7 @@ const AddAccountCard = ({ type }) => {
   
   const getButtonStyle = () => {
     let baseStyle = "flex flex-col items-center min-w-[20rem] p-5 rounded-md bg-green-700 text-green-100 hover:brightness-110 hover:shadow-xl";
-    return type === "SAVINGS" ? baseStyle : baseStyle.replaceAll('green', 'orange');
+    return type === "SAVINGS" ? baseStyle : baseStyle.replaceAll('green', 'teal');
   }
   
   const handleClick = () => {
