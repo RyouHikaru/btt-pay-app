@@ -8,17 +8,21 @@ import Home from './components/Main/Home';
 import Missing from './components/Missing';
 import Logout from './components/Main/Logout';
 import Accounts from './components/Main/Accounts';
+import Transactions from './components/Main/Transactions';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />}>
         <Route index element={<Login />} />
-        <Route path='registration' element={<Register />} />
-        <Route path='forgot-password' element={<ForgotPassword />} />
-        <Route path='about' element={<About />} />
+        <Route path="registration" element={<Register />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="about" element={<About />} />
         <Route path="home" element={<Home /> } />
-        <Route path="accounts" element={<Accounts /> } />
+        <Route path="accounts">
+          <Route index element={<Accounts /> } />
+          <Route path=":acctType" element={<Transactions /> } />
+        </Route>
         <Route path="logout" element={<Logout />} />
         <Route path='*' element={<Missing />} />
       </Route>

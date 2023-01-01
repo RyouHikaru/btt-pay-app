@@ -23,7 +23,6 @@ const MobileHeader = () => {
         <MobileMenuItem text="home" />
         <MobileMenuItem text="accounts" />
         <MobileMenuItem text="services" />
-        <MobileMenuItem text="logout" />
       </ul>
       : null}
 
@@ -34,7 +33,7 @@ const MobileHeader = () => {
         {!userSession
         ? 
         <MobileMenuItem text="login" />
-        : null}
+        : <MobileMenuItem text="logout" />}
       </ul>
     </nav>
   )
