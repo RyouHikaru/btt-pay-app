@@ -14,6 +14,10 @@ const model = {
   setAccounts: action((state, payload) => {
     state.accounts = payload;
   }),
+  hasAccount: true,
+  setHasAccount: action((state, payload) => {
+    state.hasAccount = payload;
+  }),
   logout: action((state) => {
     state.userSession = null;
     sessionStorage.clear();
@@ -68,7 +72,7 @@ const model = {
     }
   }),
   retrieveUserAccounts: thunk(async (actions, payload, helper) => {
-    const { setAccounts } = helper.getStoreActions();
+    const { setAccounts, setHasAccount } = helper.getStoreActions();
 
     const token = payload;
     const decodedToken = jwtDecode(token);
@@ -82,6 +86,7 @@ const model = {
       });
 
       setAccounts(response.data);
+      setHasAccount(response.data.length !== 0);
     } catch(e) {
       console.log(e);
     }
