@@ -4,7 +4,6 @@ import { formatInTimeZone  } from 'date-fns-tz'
 import { Link } from 'react-router-dom';
 
 const TransactionCard = ({ acctType, account, transactions}) => {
-  
   const getCardStyle = () => {
     let baseStyle = "mx-auto flex flex-col gap-5 max-w-4xl p-5 bg-green-700 text-green-50 shadow-xl rounded-md";
     return acctType === "SAVINGS" ? baseStyle : baseStyle.replaceAll("green", "teal");
@@ -17,7 +16,7 @@ const TransactionCard = ({ acctType, account, transactions}) => {
   const formatDate = (date) => {
     const transactionDate = new Date(date);
 
-    return formatInTimeZone(transactionDate, "Asia/Manila", "yyyy-MM-dd HH:mm:ss");
+    return formatInTimeZone(transactionDate, "Asia/Manila", "yyyy MMM dd HH:mm:ss");
   }
 
   return (

@@ -1,6 +1,7 @@
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Oval } from "react-loading-icons";
 import AccountCard from "./AccountCard";
 import AddAccountCard from "./AddAccountCard";
 
@@ -73,9 +74,9 @@ const Accounts = () => {
     <section className="flex-grow grid grid-rows-2 grid-cols-1 items-center gap-10 p-10 bg-stone-100 opacity-95 text-stone-800 xl:grid-flow-col xl:grid-rows-none xl:grid-cols-2">
       {getComponents()}
     </section> : 
-    
+
     <section className="flex-grow flex p-10 bg-stone-100 opacity-90 text-stone-800">
-      <h1 className="text-2xl">Redirecting...</h1>
+      <h1 className="text-2xl"><Oval stroke="#115e59" strokeWidth="4"/></h1>
     </section>
   )
 }
