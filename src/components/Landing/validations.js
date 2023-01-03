@@ -136,3 +136,11 @@ export const matchPasswordValidation = (password) => {
     }
   }
 }
+
+export const contactNameValidation = {
+  required: required('name'),
+}
+
+export const contactMsgValidation = {
+  required: required('message'),
+}

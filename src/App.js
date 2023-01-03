@@ -9,6 +9,7 @@ import Missing from './components/Missing';
 import Logout from './components/Main/Logout';
 import Accounts from './components/Main/Accounts';
 import Transactions from './components/Main/Transactions';
+import Contact from './components/Landing/Contact';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="registration" element={<Register />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
         <Route path="home" element={<Home /> } />
         <Route path="accounts">
           <Route index element={<Accounts /> } />
