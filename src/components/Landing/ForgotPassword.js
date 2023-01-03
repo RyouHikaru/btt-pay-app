@@ -21,7 +21,7 @@ const ForgotPassword = () => {
     return EMAIL_PATTERN.test(email);
   }
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (email.length === 0) {
@@ -55,7 +55,7 @@ const ForgotPassword = () => {
       <div className="flex flex-col gap-8 p-5 w-full bg-stone-100 rounded-md opacity-90 shadow-2xl md:max-w-lg">
         <h1 className="text-2xl font-semibold">Forgot Password</h1>
         <h2 className='italic'>Please enter your email which you first registered with.</h2>
-        <form className="flex flex-col gap-5" onSubmit={handleLogin}>
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
           <TextField 
             type="text" name="email" text="Email address" handleChange={handleInputChange} 
             isEmpty={email.length === 0} isValid={isValid} 

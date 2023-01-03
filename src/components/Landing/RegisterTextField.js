@@ -18,6 +18,15 @@ const RegisterTextField = ({ type, name, text, register, errors, validation, has
     return isValid ? validStyles : inValidStyles;
   }
 
+  const getTextAreaStyle = () => {
+    const validStyles = "peer rounded-md resize-none border-2 border-stone-500 border-solid p-4 w-full bg-stone-100 focus:outline-none";
+    const inValidStyles = validStyles
+      .replace('border-stone-500', 'border-red-500')
+      .concat(' ', 'text-red-500');
+
+    return isValid ? validStyles : inValidStyles;
+  }
+
   const getLabelStyle = () => {
     const baseStyle = "peer-focus:animate-slide-out text-md absolute top-4 left-3 px-1 pointer-events-none";
     const validStyles = !hasContent ? baseStyle: baseStyle.concat(' ', 'peer-valid:animate-slide-out');
@@ -28,7 +37,9 @@ const RegisterTextField = ({ type, name, text, register, errors, validation, has
 
   return (
     <div className="relative">
-      <input className={getInputStyle()} type={type} name={name} {...register(name, validation)} />
+      {type !== "textarea" 
+        ? <input className={getInputStyle()} type={type} name={name} {...register(name, validation)} /> 
+        : <textarea rows="7" className={getTextAreaStyle()} type={type} name={name} {...register(name, validation)} />}
       <label className={getLabelStyle()} htmlFor={name}>{text}</label>
       <ErrorMessage
         errors={errors}
