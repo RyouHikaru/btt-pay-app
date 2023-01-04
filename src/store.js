@@ -18,9 +18,27 @@ const model = {
   setHasAccount: action((state, payload) => {
     state.hasAccount = payload;
   }),
-  logout: action((state) => {
-    state.userSession = null;
-    sessionStorage.clear();
+  logout: thunk(async (actions, request, helper) => {
+    const { userSession } = helper.getState();
+    const { setUserSession, setShowModal } = helper.getStoreActions();
+
+    try {
+      const response = await api.post('/api/auth/logout', null, {
+        headers: { Authorization: `Bearer ${userSession.token}`}
+      });
+
+      setUserSession(null);
+      sessionStorage.clear();
+
+      setShowModal({
+        header: 'Logout',
+        body: response.data.message,
+        visible: true,
+        type: 'INFO'
+      });
+    } catch(e) {
+      console.log(e);
+    }
   }),
   errorMsg: null,
   setErrorMsg: action((state, payload) => {

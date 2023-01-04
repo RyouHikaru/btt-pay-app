@@ -71,7 +71,7 @@ const Accounts = () => {
 
   return (
     userSession ?
-    <section className="flex-grow grid grid-rows-2 grid-cols-1 items-center gap-10 p-10 bg-stone-100 opacity-95 text-stone-800 xl:grid-flow-col xl:grid-rows-none xl:grid-cols-2">
+    <section className="flex-grow grid grid-rows-2 grid-cols-1 items-center gap-5 p-10 bg-stone-100 opacity-95 text-stone-800 xl:grid-flow-col xl:grid-rows-none xl:grid-cols-2">
       {getComponents()}
     </section> : 
 
