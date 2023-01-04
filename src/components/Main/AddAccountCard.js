@@ -25,7 +25,7 @@ const AddAccountCard = ({ type }) => {
   }
 
   return (
-    <div className='grid justify-center items-center max-w-xl'>
+    <div className="grid justify-center items-center max-w-xl">
       <button onClick={handleClick} className={getButtonStyle()}>
         <span className="text-9xl">{type === 'SAVINGS' ? <MdSavings /> : <MdPayments />}</span>
         <span className="text-lg">{`Open a ${type} account`}</span>

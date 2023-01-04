@@ -2,9 +2,12 @@ import { Link, useLocation } from "react-router-dom";
 import { FaHome, FaHandHoldingUsd } from "react-icons/fa";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { BiLogOut } from "react-icons/bi";
+import { useStoreActions } from "easy-peasy";
 
 const SidebarMenuItem = ({ text }) => {
   const path = useLocation().pathname;
+  const logout = useStoreActions((action) => action.logout);
+
 
   const getStyle = () => {
     let baseStyle = "border-l-4 border-stone-800 border-solid hover:border-stone-700 hover:bg-stone-700";
@@ -31,13 +34,21 @@ const SidebarMenuItem = ({ text }) => {
 
   return (
     <li className={getStyle()}>
+      {text !== "logout" ?
         <Link to={`/${text}`}>
           <div className="flex gap-2 py-5 px-10">
             <span className="text-2xl">{getIcon()}</span>
             <span>{text.toUpperCase()}</span>
           </div>
-        </Link>
-      </li>
+        </Link> :
+        <button type="button" onClick={logout}>
+          <div className="flex gap-2 py-5 px-10">
+            <span className="text-2xl">{getIcon()}</span>
+            <span>{text.toUpperCase()}</span>
+          </div>
+        </button>
+      }
+    </li>
   )
 }
 

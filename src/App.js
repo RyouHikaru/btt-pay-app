@@ -6,9 +6,9 @@ import ForgotPassword from './components/Landing/ForgotPassword';
 import About from './components/Landing/About';
 import Home from './components/Main/Home';
 import Missing from './components/Missing';
-import Logout from './components/Main/Logout';
 import Accounts from './components/Main/Accounts';
 import Transactions from './components/Main/Transactions';
+import Services from './components/Main/Services';
 import Contact from './components/Landing/Contact';
 
 function App() {
@@ -25,7 +25,9 @@ function App() {
           <Route index element={<Accounts /> } />
           <Route path=":acctType" element={<Transactions /> } />
         </Route>
-        <Route path="logout" element={<Logout />} />
+        <Route path="services">
+          <Route index element={<Services /> } />
+        </Route>
         <Route path='*' element={<Missing />} />
       </Route>
     </Routes>
