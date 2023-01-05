@@ -1,34 +1,36 @@
-import { Route, Routes } from 'react-router-dom';
-import Landing from './components/Landing/Landing';
-import Login from './components/Landing/Login';
-import Register from './components/Landing/Register';
-import ForgotPassword from './components/Landing/ForgotPassword';
-import About from './components/Landing/About';
-import Home from './components/Main/Home';
-import Missing from './components/Missing';
-import Accounts from './components/Main/Accounts';
-import Transactions from './components/Main/Transactions';
-import Services from './components/Main/Services';
-import Contact from './components/Landing/Contact';
+import { Route, Routes } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import Missing from "./pages/Missing";
+import Accounts from "./pages/Accounts";
+import Transactions from "./pages/Transactions";
+import ServiceMenu from "./pages/ServiceMenu";
+import Service from "./pages/Service";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Landing />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<Login />} />
         <Route path="registration" element={<Register />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="home" element={<Home /> } />
+        <Route path="home" element={<Home />} />
         <Route path="accounts">
-          <Route index element={<Accounts /> } />
-          <Route path=":acctType" element={<Transactions /> } />
+          <Route index element={<Accounts />} />
+          <Route path=":acctType" element={<Transactions />} />
         </Route>
         <Route path="services">
-          <Route index element={<Services /> } />
+          <Route index element={<ServiceMenu />} />
+          <Route path=":service" element={<Service />} />
         </Route>
-        <Route path='*' element={<Missing />} />
+        <Route path="*" element={<Missing />} />
       </Route>
     </Routes>
   );
