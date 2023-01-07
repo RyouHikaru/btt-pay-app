@@ -18,9 +18,9 @@ const Service = () => {
       <ServiceCard name={service} />
     </article>
   ) : (
-    <section className="flex-grow flex p-10 bg-stone-100 opacity-90 text-stone-800">
+    <section className="flex-grow p-10">
       <h1 className="text-2xl">
-        <Oval stroke="#115e59" strokeWidth="4" />
+        <Oval stroke="#F5F5F4" strokeWidth="4" />
       </h1>
     </section>
   );

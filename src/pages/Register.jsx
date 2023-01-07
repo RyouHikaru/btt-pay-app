@@ -53,8 +53,8 @@ const Registration = () => {
       body: "By confirming, you have agreed that all details are valid.",
       visible: true,
       type: "CONFIRM",
-      action: {
-        callback: signUp,
+      callback: {
+        action: signUp,
         args: data,
       },
     });

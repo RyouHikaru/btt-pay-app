@@ -8,6 +8,7 @@ import AddAccountCard from "../components/accounts/AddAccountCard";
 const Accounts = () => {
   const redirect = useNavigate();
   const userSession = useStoreState((state) => state.userSession);
+  const isLoading = useStoreState((state) => state.isLoading);
   const accounts = useStoreState((state) => state.accounts);
   const retrieveUserAccounts = useStoreActions(
     (action) => action.retrieveUserAccounts
@@ -21,10 +22,6 @@ const Accounts = () => {
     else retrieveUserAccounts(userSession.token);
   }, [userSession, redirect, retrieveUserAccounts]);
 
-  const isSavings = (type) => {
-    return type === "SAVINGS";
-  };
-
   const getComponents = () => {
     if (!accounts.length) {
       // No Account
@@ -37,6 +34,7 @@ const Accounts = () => {
     } else if (accounts.length < 2) {
       // Single Account
       const acct = accounts[0];
+      const isSavings = acct.accountType === "SAVINGS";
 
       return (
         <>
@@ -46,52 +44,44 @@ const Accounts = () => {
             acctNo={acct.accountNumber}
             acctType={acct.accountType}
             bal={acct.balance}
-            isClicked={
-              isSavings(acct.accountType)
-                ? isSavingsBalClicked
-                : isPayBalClicked
-            }
+            isClicked={isSavings ? isSavingsBalClicked : isPayBalClicked}
             setIsClicked={
-              isSavings(acct.accountType)
-                ? setIsSavingsBalClicked
-                : setIsPayBalClicked
+              isSavings ? setIsSavingsBalClicked : setIsPayBalClicked
             }
           />
-          <AddAccountCard
-            type={isSavings(acct.accountType) ? "PAY" : "SAVINGS"}
-          />
+          <AddAccountCard type={isSavings ? "PAY" : "SAVINGS"} />
         </>
       );
     } else {
       // Both Accounts
-      return accounts.map((acct) => (
-        <AccountCard
-          key={acct.id}
-          text={`My ${acct.accountType} Account`}
-          acctNo={acct.accountNumber}
-          acctType={acct.accountType}
-          bal={acct.balance}
-          isClicked={
-            isSavings(acct.accountType) ? isSavingsBalClicked : isPayBalClicked
-          }
-          setIsClicked={
-            isSavings(acct.accountType)
-              ? setIsSavingsBalClicked
-              : setIsPayBalClicked
-          }
-        />
-      ));
+      return accounts.map((acct) => {
+        const isSavings = acct.accountType === "SAVINGS";
+
+        return (
+          <AccountCard
+            key={acct.id}
+            text={`My ${acct.accountType} Account`}
+            acctNo={acct.accountNumber}
+            acctType={acct.accountType}
+            bal={acct.balance}
+            isClicked={isSavings ? isSavingsBalClicked : isPayBalClicked}
+            setIsClicked={
+              isSavings ? setIsSavingsBalClicked : setIsPayBalClicked
+            }
+          />
+        );
+      });
     }
   };
 
   return userSession ? (
     <section className="flex-grow grid grid-rows-2 grid-cols-1 items-center gap-5 p-10 bg-stone-100 opacity-95 text-stone-800 xl:grid-flow-col xl:grid-rows-none xl:grid-cols-2">
-      {getComponents()}
+      {isLoading ? null : getComponents()}
     </section>
   ) : (
-    <section className="flex-grow flex p-10 bg-stone-100 opacity-90 text-stone-800">
+    <section className="flex-grow p-10">
       <h1 className="text-2xl">
-        <Oval stroke="#115e59" strokeWidth="4" />
+        <Oval stroke="#F5F5F4" strokeWidth="4" />
       </h1>
     </section>
   );

@@ -22,10 +22,15 @@ module.exports = {
           '0%': { transform: 'scaleX(0)' },
           '100%': { transform: 'scaleX(1)' },
         },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
       },
       animation: {
         'slide-out': 'slide-out 0.2s ease-in-out forwards',
-        'show-menu': 'show-menu 0.2s ease-in-out forwards'
+        'show-menu': 'show-menu 0.2s ease-in-out forwards',
+        'fade-in-short': 'fade-in 0.3s ease-in-out',
       }
     },
   },

@@ -4,12 +4,9 @@ import bttCoin from "../../assets/img/logo192.png";
 import TransactionListItem from "./TransactionListItem";
 
 const TransactionCard = ({ acctType, account, transactions }) => {
-  const getCardStyle = () => {
-    let baseStyle =
-      "mx-auto flex flex-col gap-5 max-w-4xl p-5 bg-green-700 text-green-50 shadow-xl rounded-md";
-    return acctType === "SAVINGS"
-      ? baseStyle
-      : baseStyle.replaceAll("green", "teal");
+  const color = {
+    SAVINGS: "bg-green-700 text-green-50",
+    PAY: "bg-teal-700 text-teal-50",
   };
 
   const formatAmount = (amount) => {
@@ -30,7 +27,9 @@ const TransactionCard = ({ acctType, account, transactions }) => {
   };
 
   return (
-    <article className={getCardStyle()}>
+    <article
+      className={`mx-auto flex flex-col gap-5 max-w-4xl p-5 shadow-xl rounded-md ${color[acctType]}`}
+    >
       <section>
         <div className="flex justify-between">
           <span>
@@ -40,7 +39,10 @@ const TransactionCard = ({ acctType, account, transactions }) => {
             )}
           </span>
           <span>
-            <Link to="/accounts" className="underline text-sm hover:opacity-75">
+            <Link
+              to="/accounts"
+              className="hidden md:block underline text-sm hover:opacity-75"
+            >
               Back to Accounts
             </Link>
           </span>
