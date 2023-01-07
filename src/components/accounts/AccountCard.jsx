@@ -10,12 +10,9 @@ const AccountCard = ({
   isClicked,
   setIsClicked,
 }) => {
-  const getCardStyle = () => {
-    let baseStyle =
-      "flex flex-col gap-5 p-5 shadown-sm bg-green-700 text-green-50 rounded-md max-w-xl hover:brightness-110 hover:shadow-xl xl:max-h-64";
-    return acctType === "SAVINGS"
-      ? baseStyle
-      : baseStyle.replaceAll("green", "teal");
+  const color = {
+    SAVINGS: "bg-green-700 text-green-50",
+    PAY: "bg-teal-700 text-teal-50",
   };
 
   const formatBal = () => {
@@ -32,12 +29,10 @@ const AccountCard = ({
     return hiddenBal.replace(numPattern, "*");
   };
 
-  const getShowBalIcon = () => {
-    return !isClicked ? <BsFillEyeFill /> : <BsFillEyeSlashFill />;
-  };
-
   return (
-    <article className={getCardStyle()}>
+    <article
+      className={`flex flex-col gap-5 p-5 shadown-sm rounded-md max-w-xl hover:brightness-110 hover:shadow-xl xl:max-h-64 ${color[acctType]}`}
+    >
       <div>
         <h2 className="text-lg font-semibold">{text}</h2>
         <h3 className="text-md">{acctNo}</h3>
@@ -60,7 +55,7 @@ const AccountCard = ({
               onClick={() => setIsClicked(!isClicked)}
               className="text-xl cursor-pointer hover:opacity-75"
             >
-              {getShowBalIcon()}
+              {!isClicked ? <BsFillEyeFill /> : <BsFillEyeSlashFill />}
             </span>
           </span>
         </div>
@@ -68,7 +63,7 @@ const AccountCard = ({
       <hr />
       <div className="mx-auto">
         <span className="hover:opacity-75">
-          <Link to={acctType}>View Transactions</Link>
+          <Link to={acctType.toLowerCase()}>View Transactions</Link>
         </span>
       </div>
     </article>

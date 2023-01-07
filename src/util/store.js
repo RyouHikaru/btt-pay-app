@@ -18,6 +18,10 @@ const model = {
   setHasAccount: action((state, payload) => {
     state.hasAccount = payload;
   }),
+  accountTypes: ["PAY", "SAVINGS"],
+  setAccountTypes: action((state, payload) => {
+    state.accountTypes = payload;
+  }),
   errorMsg: null,
   setErrorMsg: action((state, payload) => {
     state.errorMsg = payload;
@@ -31,6 +35,10 @@ const model = {
   },
   setShowModal: action((state, payload) => {
     state.showModal = payload;
+  }),
+  isLoading: false,
+  setIsLoading: action((state, payload) => {
+    state.isLoading = payload;
   }),
   isMobileMenuClicked: false,
   setIsMobileMenuClicked: action((state, payload) => {
@@ -89,7 +97,9 @@ const model = {
     }
   }),
   retrieveUserAccounts: thunk(async (actions, payload, helper) => {
-    const { setAccounts, setHasAccount } = helper.getStoreActions();
+    const { setAccounts, setHasAccount, setIsLoading, setAccountTypes } = helper.getStoreActions();
+
+    setIsLoading(true);
 
     const token = payload;
     const decodedToken = jwtDecode(token);
@@ -102,10 +112,20 @@ const model = {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      setAccounts(response.data);
-      setHasAccount(response.data.length !== 0);
+      const accounts = response.data;
+      setAccounts(accounts);
+      setHasAccount(accounts.length !== 0);
+
+      let types = []
+      accounts.forEach((acct) => {
+        types.push(acct.accountType);
+      })
+
+      setAccountTypes(types);
     } catch (e) {
       console.log(e);
+    } finally {
+      setIsLoading(false);
     }
   }),
   openAccount: thunk(async (actions, payload, helper) => {

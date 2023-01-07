@@ -6,12 +6,10 @@ const AddAccountCard = ({ type }) => {
   const setShowModal = useStoreActions((action) => action.setShowModal);
   const openAccount = useStoreActions((action) => action.openAccount);
 
-  const getButtonStyle = () => {
-    let baseStyle =
-      "flex flex-col items-center min-w-[20rem] p-5 rounded-md bg-green-700 text-green-100 hover:brightness-110 hover:shadow-xl";
-    return type === "SAVINGS"
-      ? baseStyle
-      : baseStyle.replaceAll("green", "teal");
+  const isSavings = type === "SAVINGS";
+  const color = {
+    SAVINGS: "bg-green-700 text-green-100",
+    PAY: "bg-teal-700 text-teal-100",
   };
 
   const handleClick = () => {
@@ -20,8 +18,8 @@ const AddAccountCard = ({ type }) => {
       body: `By confirming, you have agreed that a ${type} account will be opened under your name.`,
       visible: true,
       type: "CONFIRM",
-      action: {
-        callback: openAccount,
+      callback: {
+        action: openAccount,
         args: { type: type, token: userSession.token },
       },
     });
@@ -29,9 +27,12 @@ const AddAccountCard = ({ type }) => {
 
   return (
     <div className="grid justify-center items-center max-w-xl">
-      <button onClick={handleClick} className={getButtonStyle()}>
+      <button
+        onClick={handleClick}
+        className={`flex flex-col items-center min-w-[20rem] p-5 rounded-md hover:brightness-110 hover:shadow-xl ${color[type]}`}
+      >
         <span className="text-9xl">
-          {type === "SAVINGS" ? <MdSavings /> : <MdPayments />}
+          {isSavings ? <MdSavings /> : <MdPayments />}
         </span>
         <span className="text-lg">{`Open a ${type} account`}</span>
       </button>
