@@ -1,4 +1,4 @@
-const TransactionListItem = ({ type, amount, date }) => {
+const TransactionListItem = ({ type, details, amount, date }) => {
   const formatAmount = () => {
     return type === "CREDIT" ? `+ ${amount}` : `- ${amount}`;
   };
@@ -6,7 +6,9 @@ const TransactionListItem = ({ type, amount, date }) => {
   return (
     <li className="flex justify-between">
       <div className="grid">
-        <span>{type}</span>
+        <span>
+          {type} - {details}
+        </span>
         <span className="text-xs">{date}</span>
       </div>
       <span>{formatAmount()}</span>

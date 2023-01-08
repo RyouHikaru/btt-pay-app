@@ -15,12 +15,8 @@ const Transactions = () => {
   const retrieveUserAccounts = useStoreActions(
     (action) => action.retrieveUserAccounts
   );
-  const retrieveTransactions = useStoreActions(
-    (action) => action.retrieveTransactions
-  );
 
   const [account, setAccount] = useState(null);
-  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     if (!userSession) redirect("/");
@@ -34,28 +30,18 @@ const Transactions = () => {
   }, [redirect, accountTypes, acctType, hasAccount]);
 
   useEffect(() => {
-    const getTransactions = async () => {
-      const transactionList = await retrieveTransactions(userSession.token);
-      setTransactions(transactionList);
-    };
-
     if (userSession) {
       setAccount(
         accounts.filter(
           (acct) => acct.accountType === acctType.toUpperCase()
         )[0]
       );
-      getTransactions();
     }
-  }, [retrieveTransactions, userSession, acctType, accounts, setAccount]);
+  }, [userSession, acctType, accounts, setAccount]);
 
   return userSession && accounts.length && hasAccount ? (
-    <section className="flex-grow p-10 bg-stone-100 opacity-95 text-stone-800">
-      <TransactionCard
-        acctType={acctType.toUpperCase()}
-        account={account}
-        transactions={transactions}
-      />
+    <section className="flex-grow p-4 bg-stone-100 opacity-95 text-stone-800 sm:p-6 md:p-10">
+      <TransactionCard acctType={acctType.toUpperCase()} account={account} />
     </section>
   ) : (
     <section className="flex-grow flex p-10 bg-stone-100 opacity-90 text-stone-800">

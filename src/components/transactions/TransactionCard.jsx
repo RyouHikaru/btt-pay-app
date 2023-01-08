@@ -1,12 +1,28 @@
 import { formatInTimeZone } from "date-fns-tz";
+import { useStoreActions } from "easy-peasy";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import bttCoin from "../../assets/img/logo192.png";
 import TransactionListItem from "./TransactionListItem";
 
-const TransactionCard = ({ acctType, account, transactions }) => {
+const TransactionCard = ({ acctType, account }) => {
+  const retrieveTransactions = useStoreActions(
+    (action) => action.retrieveTransactions
+  );
+  const [transactions, setTransactions] = useState([]);
+
+  useEffect(() => {
+    const retrieve = async () => {
+      const transList = await retrieveTransactions(account?.accountNumber);
+      setTransactions(transList);
+    };
+
+    retrieve();
+  }, [retrieveTransactions, setTransactions, account]);
+
   const color = {
     SAVINGS: "bg-green-700 text-green-50",
-    PAY: "bg-teal-700 text-teal-50",
+    PAY: "bg-cyan-700 text-cyan-50",
   };
 
   const formatAmount = (amount) => {
@@ -72,6 +88,7 @@ const TransactionCard = ({ acctType, account, transactions }) => {
                 <TransactionListItem
                   key={trx.id}
                   type={trx.transactionType}
+                  details={trx.details}
                   date={formatDate(trx.metadata.dateCreated)}
                   amount={formatAmount(trx.amount)}
                 />

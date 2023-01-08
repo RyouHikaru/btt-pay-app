@@ -9,7 +9,7 @@ const AddAccountCard = ({ type }) => {
   const isSavings = type === "SAVINGS";
   const color = {
     SAVINGS: "bg-green-700 text-green-100",
-    PAY: "bg-teal-700 text-teal-100",
+    PAY: "bg-cyan-700 text-cyan-100",
   };
 
   const handleClick = () => {
