@@ -97,7 +97,8 @@ const model = {
     }
   }),
   retrieveUserAccounts: thunk(async (actions, payload, helper) => {
-    const { setAccounts, setHasAccount, setIsLoading, setAccountTypes } = helper.getStoreActions();
+    const { setAccounts, setHasAccount, setIsLoading, setAccountTypes } =
+      helper.getStoreActions();
 
     setIsLoading(true);
 
@@ -116,10 +117,10 @@ const model = {
       setAccounts(accounts);
       setHasAccount(accounts.length !== 0);
 
-      let types = []
+      let types = [];
       accounts.forEach((acct) => {
         types.push(acct.accountType);
-      })
+      });
 
       setAccountTypes(types);
     } catch (e) {
@@ -154,48 +155,40 @@ const model = {
     }
   }),
   retrieveTransactions: thunk(async (actions, payload, helper) => {
-    // const { type, token } = payload;
-    // const decodedToken = jwtDecode(token);
-    // const id = decodedToken.userId;
+    const { userSession } = helper.getState();
+
     let transactionList = [];
 
     try {
-      // TODO: Add API call for retrieving Transactions
-      // const data = { accountType: type, userId: id };
+      const URL = "/api/transactions/account?";
+      const response = await api.post(`${URL}accountNumber=${payload}`, null, {
+        headers: { Authorization: `Bearer ${userSession.token}` },
+      });
 
-      // const response = await api.post('/api/accounts', data, {
-      //   headers: { Authorization: `Bearer ${token}`}
-      // });
-
-      // FIXME: Temporary
-      transactionList = [
-        {
-          id: 1,
-          transactionNumber: "REF1000001",
-          details: "Cash in from BTT Bank",
-          amount: "1000",
-          transactionType: "CREDIT",
-          account: null,
-          metadata: {
-            dateCreated: "2023-01-01",
-          },
-        },
-        {
-          id: 2,
-          transactionNumber: "REF1000002",
-          details: "Buy Load",
-          amount: "420",
-          transactionType: "DEBIT",
-          account: null,
-          metadata: {
-            dateCreated: "2023-01-02",
-          },
-        },
-      ];
+      transactionList = response.data;
     } catch (e) {
       console.log(e);
     } finally {
       return transactionList;
+    }
+  }),
+  cashIn: thunk(async (actions, payload, helper) => {
+    const { userSession } = helper.getState();
+    const { setShowModal } = helper.getStoreActions();
+
+    try {
+      const response = await api.post("/api/transactions", payload, {
+        headers: { Authorization: `Bearer ${userSession.token}` },
+      });
+
+      setShowModal({
+        header: "Cash In",
+        body: response.data.message,
+        visible: true,
+        type: "INFO",
+      });
+    } catch (e) {
+      console.log(e);
     }
   }),
 };

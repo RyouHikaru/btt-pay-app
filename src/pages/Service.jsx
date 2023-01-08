@@ -1,4 +1,4 @@
-import { useStoreState } from "easy-peasy";
+import { useStoreActions, useStoreState } from "easy-peasy";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { Oval } from "react-loading-icons";
@@ -8,13 +8,17 @@ const Service = () => {
   const redirect = useNavigate();
   const service = useParams().service;
   const userSession = useStoreState((state) => state.userSession);
+  const retrieveUserAccounts = useStoreActions(
+    (action) => action.retrieveUserAccounts
+  );
 
   useEffect(() => {
     if (!userSession) redirect("/");
-  }, [userSession, redirect]);
+    else retrieveUserAccounts(userSession.token);
+  }, [userSession, redirect, retrieveUserAccounts]);
 
   return userSession ? (
-    <article className="flex-grow bg-stone-100 opacity-95 flex justify-center items-center p-10">
+    <article className="flex-grow bg-amber-300 opacity-95 flex justify-center items-center p-10">
       <ServiceCard name={service} />
     </article>
   ) : (

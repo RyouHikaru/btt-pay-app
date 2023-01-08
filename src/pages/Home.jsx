@@ -12,7 +12,7 @@ const Home = () => {
   }, [userSession, redirect]);
 
   return userSession ? (
-    <section className="flex-grow flex p-10 bg-stone-100 opacity-90 text-stone-800">
+    <section className="flex-grow flex p-10 bg-stone-100 opacity-95 text-stone-800">
       <article className="flex flex-col gap-10">
         <h1 className="text-3xl font-bold">Hi, {userSession.username}!</h1>
         <h2 className="text-2xl font-semibold">Welcome to BTT Pay!</h2>

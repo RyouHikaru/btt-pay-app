@@ -12,7 +12,7 @@ const AccountCard = ({
 }) => {
   const color = {
     SAVINGS: "bg-green-700 text-green-50",
-    PAY: "bg-teal-700 text-teal-50",
+    PAY: "bg-cyan-700 text-cyan-50",
   };
 
   const formatBal = () => {
