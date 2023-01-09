@@ -1,6 +1,7 @@
 import { createStore, action, thunk } from "easy-peasy";
-import api from "../adapters/api";
+import { modalHeaders, modalType } from "./modalContent";
 import jwtDecode from "jwt-decode";
+import api from "../adapters/api";
 
 const model = {
   userSession: sessionStorage.userSession
@@ -71,10 +72,10 @@ const model = {
       sessionStorage.clear();
 
       setShowModal({
-        header: "Logout",
+        header: modalHeaders.LOGOUT,
         body: response.data.message,
         visible: true,
-        type: "INFO",
+        type: modalType.INFO,
       });
     } catch (e) {
       console.log(e);
@@ -87,10 +88,10 @@ const model = {
       const response = await api.post("/api/auth/register", request);
 
       setShowModal({
-        header: "Registration",
+        header: modalHeaders.REGISTRATION,
         body: response.data.message,
         visible: true,
-        type: "INFO",
+        type: modalType.INFO,
       });
     } catch (e) {
       console.log(e);
@@ -143,10 +144,10 @@ const model = {
       });
 
       setShowModal({
-        header: "Open Account",
+        header: modalHeaders.OPEN_ACCOUNT,
         body: response.data.message,
         visible: true,
-        type: "INFO",
+        type: modalType.INFO,
       });
 
       retrieveUserAccounts(token);
@@ -182,10 +183,10 @@ const model = {
       });
 
       setShowModal({
-        header: "Cash In",
+        header: modalHeaders.CASH_IN,
         body: response.data.message,
         visible: true,
-        type: "INFO",
+        type: modalType.INFO,
       });
     } catch (e) {
       console.log(e);

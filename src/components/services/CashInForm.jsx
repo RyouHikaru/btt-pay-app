@@ -1,5 +1,7 @@
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useState } from "react";
+import { modalHeaders, modalType } from "../../util/modalContent";
+import errorMessages from "../../util/errorMessages";
 
 const CashInForm = () => {
   const accounts = useStoreState((state) => state.accounts);
@@ -20,21 +22,33 @@ const CashInForm = () => {
 
     if (data.accountNumber === "") {
       setShowModal({
-        header: "Cash In",
-        body: "Please select an account.",
+        header: modalHeaders.CASH_IN,
+        body: errorMessages.NO_ACCOUNT_CHOSEN,
         visible: true,
-        type: "EROR",
+        type: modalType.ERROR,
       });
     } else if (!data.amount.length || data.amount === "0") {
       setShowModal({
-        header: "Cash In",
-        body: "Please enter an amount more than 0.",
+        header: modalHeaders.CASH_IN,
+        body: errorMessages.INVALID_AMOUNT,
         visible: true,
-        type: "EROR",
+        type: modalType.ERROR,
       });
     } else {
-      cashIn(data);
-      setData(initialData);
+      setShowModal({
+        header: modalHeaders.CASH_IN,
+        body: errorMessages.CONFIRM_CASH_IN.replace("%", data.amount).replace("%", data.accountNumber),
+        visible: true,
+        type: modalType.CONFIRM,
+        callback: {
+          action: cashIn,
+          args: data
+        },
+        cleanUp: {
+          action: setData,
+          args: initialData
+        }
+      });
     }
   };
 

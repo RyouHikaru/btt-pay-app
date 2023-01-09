@@ -1,5 +1,7 @@
 import { useStoreState, useStoreActions } from "easy-peasy";
 import { MdSavings, MdPayments } from "react-icons/md";
+import { modalHeaders, modalType } from "../../util/modalContent";
+import errorMessages from "../../util/errorMessages";
 
 const AddAccountCard = ({ type }) => {
   const userSession = useStoreState((state) => state.userSession);
@@ -14,10 +16,10 @@ const AddAccountCard = ({ type }) => {
 
   const handleClick = () => {
     setShowModal({
-      header: "Open Account",
-      body: `By confirming, you have agreed that a ${type} account will be opened under your name.`,
+      header: modalHeaders.OPEN_ACCOUNT,
+      body: errorMessages.CONFIRM_OPEN_ACCOUNT.replace("%", type),
       visible: true,
-      type: "CONFIRM",
+      type: modalType.CONFIRM,
       callback: {
         action: openAccount,
         args: { type: type, token: userSession.token },

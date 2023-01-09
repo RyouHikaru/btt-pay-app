@@ -1,11 +1,12 @@
 import { useStoreState, useStoreActions } from "easy-peasy";
+import { modalType } from "../../util/modalContent";
 
 const Modal = () => {
   const showModal = useStoreState((state) => state.showModal);
   const setShowModal = useStoreActions((action) => action.setShowModal);
 
-  const isErrorType = showModal.type === "ERROR";
-  const isConfirmType = showModal.type === "CONFIRM";
+  const isErrorType = showModal.type === modalType.ERROR;
+  const isConfirmType = showModal.type === modalType.CONFIRM;
 
   const handleConfirmation = (e) => {
     if (e.target.value === "YES") {
@@ -14,6 +15,13 @@ const Modal = () => {
 
       // Function call
       action(args);
+
+      // Addition clean up calls
+      if (showModal.cleanUp) {
+        const cleanUp = showModal.cleanUp?.action;
+        const cleanUpArgs = showModal.cleanUp?.args;
+        cleanUp(cleanUpArgs);
+      }
 
       resetModal();
     } else {
@@ -26,8 +34,9 @@ const Modal = () => {
       header: "",
       body: "",
       visible: false,
-      type: "INFO",
+      type: modalType.INFO,
       callback: null,
+      cleanup: null,
     });
   };
 
