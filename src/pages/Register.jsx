@@ -1,8 +1,10 @@
 import { useStoreActions } from "easy-peasy";
 import { useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { modalHeaders, modalType } from "../util/modalContent";
 import Button from "../components/general/Button";
 import TextField from "../components/general/ValidatedTextField";
+import errorMessages from "../util/errorMessages";
 import {
   firstNameValidation,
   lastNameValidation,
@@ -49,10 +51,10 @@ const Registration = () => {
 
   const showConfirmation = (data) => {
     setShowModal({
-      header: "Registration",
-      body: "By confirming, you have agreed that all details are valid.",
+      header: modalHeaders.REGISTRATION,
+      body: errorMessages.CONFIRM_REGISTRATION,
       visible: true,
-      type: "CONFIRM",
+      type: modalType.CONFIRM,
       callback: {
         action: signUp,
         args: data,
