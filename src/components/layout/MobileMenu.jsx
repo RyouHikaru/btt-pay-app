@@ -8,18 +8,12 @@ const MobileHeader = () => {
   );
   const userSession = useStoreState((state) => state.userSession);
 
-  const getNavStyle = () => {
-    let baseStyle =
-      "hidden flex flex-col flex-grow justify-between bg-stone-100 origin-right animate-show-menu sm:hidden";
-    return isClicked ? baseStyle.replace("hidden", "block") : baseStyle;
-  };
-
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
 
   return (
-    <nav className={getNavStyle()}>
+    <nav className={`${isClicked ? 'block' : 'hidden'} flex-col flex-grow justify-between bg-gradient-to-br from-amber-200 to-amber-400 origin-right animate-show-menu sm:hidden`}>
       {userSession ? (
         <ul
           onClick={handleClick}

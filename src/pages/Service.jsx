@@ -18,7 +18,7 @@ const Service = () => {
   }, [userSession, redirect, retrieveUserAccounts]);
 
   return userSession ? (
-    <article className="flex-grow bg-amber-300 opacity-95 flex justify-center items-center p-10">
+    <article className="flex-grow bg-gradient-to-br from-amber-200 to-amber-400 opacity-95 flex justify-center items-center p-10">
       <ServiceCard name={service} />
     </article>
   ) : (

@@ -13,7 +13,7 @@ const ServiceMenu = () => {
   }, [userSession, redirect]);
 
   return userSession ? (
-    <section className="flex-grow grid items-stretch gap-10 grid-rows-3 grid-cols-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-rows-2 lg:grid-cols-4 p-10 bg-amber-300 opacity-95 text-stone-800">
+    <section className="flex-grow grid items-stretch gap-10 grid-rows-3 grid-cols-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-rows-2 lg:grid-cols-4 p-10 bg-gradient-to-br from-amber-200 to-amber-400 opacity-95 text-stone-800">
       <ServiceMenuItem service="Cash In" />
       <ServiceMenuItem service="Transfer Coins" />
       <ServiceMenuItem service="Pay Bills" />

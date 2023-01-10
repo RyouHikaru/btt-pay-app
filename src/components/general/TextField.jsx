@@ -2,7 +2,7 @@ const TextField = ({ type, name, text, handleChange, isValid, isEmpty }) => {
   return (
     <div className="relative">
       <input
-        className={`peer rounded-md border-2 border-solid p-4 w-full focus:outline-none bg-stone-100 ${
+        className={`peer rounded-md border-2 border-solid p-4 w-full focus:outline-none bg-amber-100 ${
           isValid ? "border-stone-500" : "border-red-500 text-red-500"
         }`}
         name={name}

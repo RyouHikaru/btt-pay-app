@@ -44,8 +44,8 @@ const Login = () => {
   };
 
   return (
-    <section className="flex-grow flex justify-center px-5 py-10 sm:justify-start md:px-24">
-      <div className="flex flex-col gap-8 p-5 self-start w-full bg-stone-100 rounded-md opacity-90 shadow-2xl md:max-w-sm">
+    <section className="flex-grow flex justify-center px-5 bg-gradient-to-br from-amber-200 to-amber-400 opacity-95 py-10 sm:justify-start md:px-24">
+      <div className="flex flex-col gap-8 p-5 self-start w-full bg-amber-100 rounded-md shadow-2xl md:max-w-sm">
         <h1 className="text-2xl font-semibold">Sign in to your account</h1>
         <form className="flex flex-col gap-5" onSubmit={handleLogin}>
           <TextField

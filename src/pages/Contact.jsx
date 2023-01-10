@@ -38,8 +38,8 @@ const Contact = () => {
   };
 
   return (
-    <section className="flex-grow flex flex-col items-center p-10">
-      <div className="flex flex-col p-5 w-full items-center bg-stone-100 opacity-90 shadow-2xl rounded-md sm:p-10 md:max-w-xl">
+    <section className="flex-grow flex flex-col items-center p-10 bg-gradient-to-br from-amber-200 to-amber-400 opacity-95">
+      <div className="flex flex-col p-5 w-full items-center bg-amber-100 shadow-2xl rounded-md sm:p-10 md:max-w-xl">
         <div className="w-full flex justify-between">
           <h1 className="text-4xl font-semibold pb-7">Contact</h1>
           {userSession ? (

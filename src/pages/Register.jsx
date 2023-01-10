@@ -63,8 +63,8 @@ const Registration = () => {
   };
 
   return (
-    <section className="flex-grow flex items-center px-5 py-10 sm:justify-center md:px-24">
-      <div className="flex flex-col gap-8 p-5 w-full bg-stone-100 rounded-md opacity-90 shadow-2xl md:max-w-lg">
+    <section className="flex-grow flex items-center px-5 py-10 bg-gradient-to-br opacity-90 from-amber-200 to-amber-400 sm:justify-center md:px-24">
+      <div className="flex flex-col gap-8 p-5 w-full bg-amber-100 rounded-md shadow-2xl md:max-w-lg">
         <h1 className="text-2xl font-semibold">Registration</h1>
         <form
           className="flex flex-col gap-5"
