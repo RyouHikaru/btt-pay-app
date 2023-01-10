@@ -14,7 +14,7 @@ module.exports = {
         'slide-out': {
           '100%': {
             top: '-0.75rem',
-            backgroundColor: 'rgb(245 245 244)',
+            backgroundColor: 'rgb(254 243 199)',
             transform: 'scale(0.85)'
           }
         },

@@ -1,9 +1,9 @@
-import bttCoin from "../../assets/img/logo192.png";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import bttCoin from "../../assets/img/logo192.png";
+import Separator from "../general/Separator";
 
 const AccountCard = ({
-  text,
   acctNo,
   acctType,
   bal,
@@ -11,8 +11,8 @@ const AccountCard = ({
   setIsClicked,
 }) => {
   const color = {
-    SAVINGS: "bg-green-700 text-green-50",
-    PAY: "bg-cyan-700 text-cyan-50",
+    SAVINGS: "text-emerald-800",
+    PAY: "text-cyan-800",
   };
 
   const formatBal = () => {
@@ -31,10 +31,10 @@ const AccountCard = ({
 
   return (
     <article
-      className={`flex flex-col gap-5 p-5 shadown-sm rounded-md max-w-xl hover:brightness-110 hover:shadow-xl xl:max-h-64 ${color[acctType]}`}
+      className={`flex flex-col gap-5 p-5 shadow-md rounded-md max-w-xl hover:brightness-110 hover:shadow-xl xl:max-h-64 bg-amber-100 text-stone-800`}
     >
       <div>
-        <h2 className="text-lg font-semibold">{text}</h2>
+        <h2 className={`text-lg font-semibold ${color[acctType]}`}>{`My ${acctType} Account`}</h2>
         <h3 className="text-md">{acctNo}</h3>
       </div>
       <div className="flex flex-col items-start gap-2 p-5 md:flex-row">
@@ -60,7 +60,7 @@ const AccountCard = ({
           </span>
         </div>
       </div>
-      <hr />
+      <Separator />
       <div className="mx-auto">
         <span className="hover:opacity-75">
           <Link to={acctType.toLowerCase()}>View Transactions</Link>

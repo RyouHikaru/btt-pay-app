@@ -3,6 +3,7 @@ import { useStoreActions } from "easy-peasy";
 import { FaHome, FaHandHoldingUsd } from "react-icons/fa";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { BiLogOut, BiLogIn } from "react-icons/bi";
+import Separator from "../general/Separator";
 import {
   IoIosSend,
   IoMdInformationCircle,
@@ -50,7 +51,7 @@ const MobileMenuItem = ({ text }) => {
           </div>
         </button>
       )}
-      <hr />
+      <Separator />
     </li>
   );
 };

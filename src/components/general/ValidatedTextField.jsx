@@ -19,7 +19,7 @@ const ValidatedTextField = ({
 
   const getInputStyle = () => {
     const validStyles =
-      "peer rounded-md border-2 border-stone-500 border-solid p-4 w-full bg-stone-100 focus:outline-none";
+      "peer rounded-md border-2 border-stone-500 border-solid p-4 w-full bg-amber-100 focus:outline-none";
     const inValidStyles = validStyles
       .replace("border-stone-500", "border-red-500")
       .concat(" ", "text-red-500");
@@ -29,7 +29,7 @@ const ValidatedTextField = ({
 
   const getTextAreaStyle = () => {
     const validStyles =
-      "peer rounded-md resize-none border-2 border-stone-500 border-solid p-4 w-full bg-stone-100 focus:outline-none";
+      "peer rounded-md resize-none border-2 border-stone-500 border-solid p-4 w-full bg-amber-100 focus:outline-none";
     const inValidStyles = validStyles
       .replace("border-stone-500", "border-red-500")
       .concat(" ", "text-red-500");

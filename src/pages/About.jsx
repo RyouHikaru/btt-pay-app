@@ -8,8 +8,8 @@ const About = () => {
   const userSession = useStoreState((state) => state.userSession);
 
   return (
-    <section className="flex flex-col items-center md:p-10">
-      <div className="flex flex-col gap-10 p-10 items-center bg-stone-100 opacity-90 shadow-2xl md:rounded-md md:items-center md:max-w-4xl">
+    <section className="flex-grow flex flex-col bg-gradient-to-br from-amber-200 to-amber-400 opacity-95 items-center md:p-10">
+      <div className="flex flex-col gap-10 p-10 items-center bg-amber-100 shadow-2xl md:rounded-md md:items-center md:max-w-4xl">
         <div className="w-full grid grid-flow-col grid-cols-3 justify-center border- border-red-500 border-dashed">
           <span className="col-start-2 flex justify-center items-center">
             <h1 className="text-4xl font-semibold pb-7">About</h1>
@@ -47,7 +47,7 @@ const About = () => {
           </div>
         </article>
 
-        <hr className="w-full h-1 bg-gradient-to-r from-stone-500 via-stone-700 to-stone-500" />
+        <hr className="w-full border-1 border-stone-900" />
 
         <article className="flex flex-col gap-10 items-center md:flex-row-reverse md:max-w-3xl">
           <img
@@ -69,7 +69,7 @@ const About = () => {
           </div>
         </article>
 
-        <hr className="w-full h-1 bg-gradient-to-r from-stone-500 via-stone-700 to-stone-500" />
+        <hr className="w-full border-1 border-stone-900" />
 
         <article className="flex flex-col items-center gap-10 md:flex-row md:max-w-3xl">
           <img

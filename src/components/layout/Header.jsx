@@ -21,7 +21,7 @@ const Header = () => {
   };
 
   return (
-    <header className="flex justify-between items-center p-5 bg-stone-800 text-stone-100 md:px-10">
+    <header className="flex justify-between items-center p-5 bg-gradient-to-b from-stone-800 to-stone-900 text-stone-100 md:px-10">
       <a href={anchorLink}>
         <div className="flex gap-2 items-center">
           <img src={logo} alt="logo" width={40} height={40} />

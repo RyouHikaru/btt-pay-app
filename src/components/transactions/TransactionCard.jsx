@@ -3,6 +3,7 @@ import { useStoreActions } from "easy-peasy";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import bttCoin from "../../assets/img/logo192.png";
+import Separator from "../general/Separator";
 import TransactionListItem from "./TransactionListItem";
 
 const TransactionCard = ({ acctType, account }) => {
@@ -10,6 +11,11 @@ const TransactionCard = ({ acctType, account }) => {
     (action) => action.retrieveTransactions
   );
   const [transactions, setTransactions] = useState([]);
+
+  const color = {
+    SAVINGS: "text-emerald-800",
+    PAY: "text-cyan-800",
+  };
 
   useEffect(() => {
     const retrieve = async () => {
@@ -19,11 +25,6 @@ const TransactionCard = ({ acctType, account }) => {
 
     retrieve();
   }, [retrieveTransactions, setTransactions, account]);
-
-  const color = {
-    SAVINGS: "bg-green-700 text-green-50",
-    PAY: "bg-cyan-700 text-cyan-50",
-  };
 
   const formatAmount = (amount) => {
     return Intl.NumberFormat("en", {
@@ -44,12 +45,12 @@ const TransactionCard = ({ acctType, account }) => {
 
   return (
     <article
-      className={`mx-auto flex flex-col gap-5 max-w-4xl p-5 shadow-xl rounded-md ${color[acctType]}`}
+      className={`mx-auto flex flex-col gap-5 max-w-4xl p-5 shadow-md rounded-md bg-amber-100`}
     >
       <section>
         <div className="flex justify-between">
           <span>
-            <h2 className="text-lg font-semibold">My {acctType} Account</h2>
+            <h2 className={`text-lg font-semibold ${color[acctType]}`}>My {acctType} Account</h2>
             {!account ? null : (
               <h3 className="text-md">{account.accountNumber}</h3>
             )}
@@ -79,7 +80,7 @@ const TransactionCard = ({ acctType, account }) => {
           </div>
         </span>
       </section>
-      <hr />
+      <Separator />
       <section className="flex flex-col gap-7">
         <h3 className="text-md font-semibold">Transactions</h3>
         <ul className="grid gap-5">

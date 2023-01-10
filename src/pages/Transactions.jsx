@@ -40,7 +40,7 @@ const Transactions = () => {
   }, [userSession, acctType, accounts, setAccount]);
 
   return userSession && accounts.length && hasAccount ? (
-    <section className="flex-grow p-4 bg-stone-100 opacity-95 text-stone-800 sm:p-6 md:p-10">
+    <section className="flex-grow p-4 bg-gradient-to-br from-amber-200 to-amber-400 opacity-95 text-stone-800 sm:p-6 md:p-10">
       <TransactionCard acctType={acctType.toUpperCase()} account={account} />
     </section>
   ) : (
