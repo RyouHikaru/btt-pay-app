@@ -192,6 +192,45 @@ const model = {
       console.log(e);
     }
   }),
+  transferCoins: thunk(async (actions, payload, helper) => {
+    const { userSession } = helper.getState();
+    const { setShowModal, retrieveUserAccounts } = helper.getStoreActions();
+
+    try {
+      const senderData = {
+        accountNumber: payload.fromAccountNumber,
+        details: payload.details,
+        amount: payload.amount,
+        transactionType: payload.transactionType,
+      };
+
+      const receiverData = {
+        accountNumber: payload.toAccountNumber,
+        details: "RECEIVE COINS",
+        amount: payload.amount,
+        transactionType: "CREDIT",
+      };
+
+      let response = await api.post("/api/transactions", senderData, {
+        headers: { Authorization: `Bearer ${userSession.token}` },
+      });
+
+      setShowModal({
+        header: modalHeaders.TRANSFER_COINS,
+        body: response.data.message,
+        visible: true,
+        type: modalType.INFO,
+      });
+
+      await api.post("/api/transactions", receiverData, {
+        headers: { Authorization: `Bearer ${userSession.token}` },
+      });
+
+      retrieveUserAccounts(userSession.token);
+    } catch (e) {
+      console.log(e);
+    }
+  }),
 };
 
 export default createStore(model);

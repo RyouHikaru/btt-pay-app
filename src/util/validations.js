@@ -28,6 +28,25 @@ export const isEmailExisting = async (email) => {
   }
 };
 
+export const isAccountExisting = async (accountNumber, token) => {
+  let isExisting = false;
+  try {
+    const URL = "/api/accounts/exists?";
+    const response = await api.post(
+      `${URL}accountNumber=${accountNumber}`,
+      null,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    isExisting = response.data;
+  } catch (e) {
+    console.log(e);
+  } finally {
+    return isExisting;
+  }
+};
+
 export const isEmailValid = (email) => {
   return regexPatterns.EMAIL.test(email);
 };
@@ -71,7 +90,8 @@ export const emailValidation = {
     message: errorMessages.INVALID_EMAIL,
   },
   validate: {
-    isAvailable: async (v) => !(await isEmailExisting(v)) || errorMessages.EMAIL_ALREADY_USED,
+    isAvailable: async (v) =>
+      !(await isEmailExisting(v)) || errorMessages.EMAIL_ALREADY_USED,
   },
 };
 
@@ -115,7 +135,8 @@ export const matchPasswordValidation = (password) => {
   return {
     validate: {
       isConfirmed: (v) =>
-        (password.length > 0 && v.length > 0) || errorMessages.PASSWORD_UNCONFIRMED,
+        (password.length > 0 && v.length > 0) ||
+        errorMessages.PASSWORD_UNCONFIRMED,
       isEqual: (v) => password === v || errorMessages.PASSWORD_MISMATCH,
     },
   };

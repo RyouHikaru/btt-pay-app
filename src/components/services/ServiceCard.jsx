@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import CashInForm from "./CashInForm";
+import TransferCoinsForm from "./TransferCoinsForm";
 
 const ServiceCard = ({ name }) => {
   const getComponents = () => {
     switch (name) {
       case "cash-in":
         return <CashInForm />;
+      case "transfer-coins":
+        return <TransferCoinsForm />;
       default:
         return null;
     }

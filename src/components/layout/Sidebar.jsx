@@ -3,25 +3,21 @@ import SidebarItem from "./SidebarItem";
 
 const Sidebar = () => {
   const path = useLocation().pathname;
-
-  const getSidebarStyle = () => {
-    const excludedPaths = [
-      "/about",
-      "/contact",
-      "/help",
-      "/service-agreement",
-      "/privacy-policy",
-    ];
-    let baseStyle =
-      "flex-grow hidden flex-col justify-between min-w-[17rem] max-w-[17rem] bg-stone-800 text-stone-100 sm:flex";
-
-    return excludedPaths.includes(path)
-      ? baseStyle.replace("sm:flex", "hidden")
-      : baseStyle;
-  };
+  const excludedPaths = [
+    "/about",
+    "/contact",
+    "/help",
+    "/service-agreement",
+    "/privacy-policy",
+  ];
+  const isExempted = excludedPaths.includes(path);
 
   return (
-    <aside className={getSidebarStyle()}>
+    <aside
+      className={`flex-grow hidden flex-col justify-between min-w-[17rem] max-w-[17rem] bg-gradient-to-r from-stone-800 to-stone-900 text-stone-100 ${
+        !isExempted ? "sm:flex" : ""
+      }`}
+    >
       <ul className="grid">
         <SidebarItem text="home" />
         <SidebarItem text="accounts" />
