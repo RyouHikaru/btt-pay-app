@@ -9,9 +9,9 @@ const AddAccountCard = ({ type }) => {
   const openAccount = useStoreActions((action) => action.openAccount);
 
   const isSavings = type === "SAVINGS";
-  const color = {
-    SAVINGS: "bg-green-700 text-green-100",
-    PAY: "bg-cyan-700 text-cyan-100",
+  const textColor = {
+    SAVINGS: "text-emerald-800",
+    PAY: "text-cyan-800",
   };
 
   const handleClick = () => {
@@ -31,7 +31,7 @@ const AddAccountCard = ({ type }) => {
     <div className="grid justify-center items-center max-w-xl">
       <button
         onClick={handleClick}
-        className={`flex flex-col items-center min-w-[20rem] p-5 rounded-md hover:brightness-110 hover:shadow-xl ${color[type]}`}
+        className={`flex flex-col items-center min-w-[20rem] p-5 rounded-md hover:brightness-110 hover:shadow-xl bg-amber-100 ${textColor[type]}`}
       >
         <span className="text-9xl">
           {isSavings ? <MdSavings /> : <MdPayments />}

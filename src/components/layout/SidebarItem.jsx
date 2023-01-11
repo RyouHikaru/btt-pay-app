@@ -7,18 +7,7 @@ import { BiLogOut } from "react-icons/bi";
 const SidebarMenuItem = ({ text }) => {
   const path = useLocation().pathname;
   const logout = useStoreActions((action) => action.logout);
-
-  const getStyle = () => {
-    let baseStyle =
-      "border-l-4 border-stone-800 border-solid hover:border-stone-700 hover:bg-stone-700";
-
-    return path.includes(text)
-      ? baseStyle
-          .replace("border-stone-800", "border-stone-100")
-          .replace("hover:bg-stone-700", "bg-stone-700")
-          .replace("hover:border-stone-700", "")
-      : baseStyle;
-  };
+  const isActive = path.includes(text);
 
   const getIcon = () => {
     switch (text) {
@@ -34,7 +23,7 @@ const SidebarMenuItem = ({ text }) => {
   };
 
   return (
-    <li className={getStyle()}>
+    <li className={`border-l-4 border-solid ${isActive ? "border-amber-400 bg-stone-700" : "border-stone-800 hover:bg-stone-700 hover:border-stone-700"}`}>
       {text !== "logout" ? (
         <Link to={`/${text}`}>
           <div className="flex gap-2 py-5 px-10">
