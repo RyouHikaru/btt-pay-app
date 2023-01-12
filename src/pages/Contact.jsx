@@ -42,14 +42,14 @@ const Contact = () => {
       <div className="flex flex-col p-5 w-full items-center bg-amber-100 shadow-2xl rounded-md sm:p-10 md:max-w-xl">
         <div className="w-full flex justify-between">
           <h1 className="text-4xl font-semibold pb-7">Contact</h1>
-          {userSession ? (
+          {userSession && (
             <Link
               className="hidden pt-2 underline sm:block hover:opacity-75"
               to="/home"
             >
               Back to Home
             </Link>
-          ) : null}
+          )}
         </div>
 
         <form

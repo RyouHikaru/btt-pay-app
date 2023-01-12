@@ -4,12 +4,12 @@ import jwtDecode from "jwt-decode";
 import api from "../adapters/api";
 
 const model = {
-  userSession: sessionStorage.userSession
-    ? JSON.parse(sessionStorage.userSession)
+  userSession: localStorage.userSession
+    ? JSON.parse(localStorage.userSession)
     : null,
   setUserSession: action((state, payload) => {
     state.userSession = payload;
-    sessionStorage.setItem("userSession", JSON.stringify(payload));
+    localStorage.setItem("userSession", JSON.stringify(payload));
   }),
   accounts: [],
   setAccounts: action((state, payload) => {
@@ -69,7 +69,7 @@ const model = {
       });
 
       setUserSession(null);
-      sessionStorage.clear();
+      localStorage.clear();
 
       setShowModal({
         header: modalHeaders.LOGOUT,

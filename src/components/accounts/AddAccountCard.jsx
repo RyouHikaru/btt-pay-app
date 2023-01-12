@@ -31,7 +31,7 @@ const AddAccountCard = ({ type }) => {
     <div className="grid justify-center items-center max-w-xl">
       <button
         onClick={handleClick}
-        className={`flex flex-col items-center min-w-[20rem] p-5 rounded-md hover:brightness-110 hover:shadow-xl bg-amber-100 ${textColor[type]}`}
+        className={`flex flex-col items-center min-w-[20rem] p-5 rounded-md shadow-md hover:brightness-110 hover:shadow-xl bg-amber-100 ${textColor[type]}`}
       >
         <span className="text-9xl">
           {isSavings ? <MdSavings /> : <MdPayments />}

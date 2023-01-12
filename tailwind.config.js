@@ -30,7 +30,7 @@ module.exports = {
       animation: {
         'slide-out': 'slide-out 0.2s ease-in-out forwards',
         'show-menu': 'show-menu 0.2s ease-in-out forwards',
-        'fade-in-short': 'fade-in 0.3s ease-in-out',
+        'fade-in-short': 'fade-in 0.25s ease-in-out',
       }
     },
   },

@@ -43,16 +43,16 @@ const Header = () => {
           <li className="hover:opacity-75">
             <Link to="/contact">CONTACT</Link>
           </li>
-          {userSession ? (
+          {userSession && (
             <li className="hover:opacity-75">
               <Link to="/help">HELP</Link>
             </li>
-          ) : null}
-          {path !== "/" && !userSession ? (
+          )}
+          {path !== "/" && !userSession && (
             <li className="hover:opacity-75">
               <Link to="/">LOGIN</Link>
             </li>
-          ) : null}
+          )}
         </ul>
       </nav>
     </header>

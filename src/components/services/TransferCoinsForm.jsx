@@ -43,6 +43,13 @@ const TransferCoinsForm = () => {
         visible: true,
         type: modalType.ERROR,
       });
+    } else if (data.fromAccountNumber === data.toAccountNumber.toUpperCase()) {
+      setShowModal({
+        header: modalHeaders.TRANSFER_COINS,
+        body: errorMessages.INVALID_RECEIVER,
+        visible: true,
+        type: modalType.ERROR,
+      });
     } else if (!data.amount.length || data.amount === "0") {
       setShowModal({
         header: modalHeaders.TRANSFER_COINS,
@@ -60,7 +67,7 @@ const TransferCoinsForm = () => {
     } else if (!isValidReceiver) {
       setShowModal({
         header: modalHeaders.TRANSFER_COINS,
-        body: errorMessages.INVALID_RECEIVER,
+        body: errorMessages.RECEIVER_DOES_NOT_EXIST,
         visible: true,
         type: modalType.ERROR,
       });

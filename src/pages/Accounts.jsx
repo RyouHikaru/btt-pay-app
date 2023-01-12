@@ -73,8 +73,8 @@ const Accounts = () => {
   };
 
   return userSession ? (
-    <section className="flex-grow grid grid-rows-2 grid-cols-1 items-center gap-5 p-10 bg-gradient-to-br from-amber-200 to-amber-400 opacity-95 text-stone-800 xl:grid-flow-col xl:grid-rows-none xl:grid-cols-2">
-      {isLoading ? null : getComponents()}
+    <section className="flex-grow grid grid-rows-2 grid-cols-1 items-start gap-10 p-10 bg-gradient-to-br from-amber-200 to-amber-400 opacity-95 text-stone-800 xl:grid-flow-col xl:grid-rows-none xl:grid-cols-2">
+      {!isLoading && getComponents()}
     </section>
   ) : (
     <section className="flex-grow p-10">
