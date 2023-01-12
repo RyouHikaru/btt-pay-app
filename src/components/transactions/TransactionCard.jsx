@@ -44,16 +44,14 @@ const TransactionCard = ({ acctType, account }) => {
   };
 
   return (
-    <article
-      className={`mx-auto flex flex-col gap-5 max-w-4xl p-5 shadow-md rounded-md bg-amber-100`}
-    >
+    <article className="mx-auto flex flex-col gap-5 max-w-4xl p-5 shadow-md rounded-md bg-amber-100">
       <section>
         <div className="flex justify-between">
           <span>
-            <h2 className={`text-lg font-semibold ${color[acctType]}`}>My {acctType} Account</h2>
-            {!account ? null : (
-              <h3 className="text-md">{account.accountNumber}</h3>
-            )}
+            <h2 className={`text-lg font-semibold ${color[acctType]}`}>
+              My {acctType} Account
+            </h2>
+            {account && <h3 className="text-md">{account.accountNumber}</h3>}
           </span>
           <span>
             <Link
@@ -68,7 +66,7 @@ const TransactionCard = ({ acctType, account }) => {
           <h2 className="font-semibold whitespace-nowrap">BALANCE :</h2>
           <div className="whitespace-nowrap">
             <span className="grid grid-flow-col gap-2 items-center">
-              {!account ? null : <span>{formatAmount(account.balance)}</span>}
+              {account && <span>{formatAmount(account.balance)}</span>}
               <img
                 src={bttCoin}
                 alt="btt-coins"
@@ -83,7 +81,7 @@ const TransactionCard = ({ acctType, account }) => {
       <Separator />
       <section className="flex flex-col gap-7">
         <h3 className="text-md font-semibold">Transactions</h3>
-        <ul className="grid gap-5">
+        <ul className="grid gap-5 pr-2 max-h-[35vh] overflow-y-auto">
           {transactions.length
             ? transactions.map((trx) => (
                 <TransactionListItem

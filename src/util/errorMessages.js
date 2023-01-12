@@ -22,13 +22,14 @@ const errorMessages = {
   INVALID_USERNAME: "Please use alphanumeric characters and underscore ( _ ) only.",
   INVALID_PASSWORD: "Password must have at least one (1) each: uppercase, lowercase, numeric, and special character.",
   INVALID_AMOUNT: "Please enter an amount more than 0.",
-  INVALID_RECEIVER: "The receiver's account number you have entered does not exist.",
+  INVALID_RECEIVER: "Sorry, you cannot transfer coins from the same account.",
   EMAIL_ALREADY_USED: "Email is already in use.",
   USERNAME_TAKEN: "Username is already taken.",
   PASSWORD_MISMATCH: "Password does not match.",
   PASSWORD_UNCONFIRMED: "Please confirm your password.",
   NO_ACCOUNT_CHOSEN: "Please select an account.",
   NO_RECEIVER: "Please enter receiver's account number",
+  RECEIVER_DOES_NOT_EXIST: "Receiver's account number does not exist.",
   NOT_ENOUGH_BALANCE: "Sorry, you do not have enough balance on your account.",
 
   // Confirmation

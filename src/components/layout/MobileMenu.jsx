@@ -13,8 +13,12 @@ const MobileHeader = () => {
   };
 
   return (
-    <nav className={`${isClicked ? 'block' : 'hidden'} flex-col flex-grow justify-between bg-gradient-to-br from-amber-200 to-amber-400 origin-right animate-show-menu sm:hidden`}>
-      {userSession ? (
+    <nav
+      className={`${
+        isClicked ? "block" : "hidden"
+      } flex-col flex-grow justify-between bg-gradient-to-br from-amber-200 to-amber-400 origin-right animate-show-menu sm:hidden`}
+    >
+      {userSession && (
         <ul
           onClick={handleClick}
           className="w-full grid text-lg text-stone-800"
@@ -23,7 +27,7 @@ const MobileHeader = () => {
           <MobileMenuItem text="accounts" />
           <MobileMenuItem text="services" />
         </ul>
-      ) : null}
+      )}
 
       <ul onClick={handleClick} className="w-full grid text-lg text-stone-800">
         <MobileMenuItem text="about" />

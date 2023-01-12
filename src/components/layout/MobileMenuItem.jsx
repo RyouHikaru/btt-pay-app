@@ -45,7 +45,7 @@ const MobileMenuItem = ({ text }) => {
         </Link>
       ) : (
         <button type="button" onClick={logout}>
-          <div className="flex gap-2 py-5 px-7">
+          <div className="flex gap-2 py-5 px-7 w-[100vw]">
             <span className="text-2xl">{getIcon()}</span>
             <span>{text.toUpperCase()}</span>
           </div>

@@ -14,14 +14,14 @@ const About = () => {
           <span className="col-start-2 flex justify-center items-center">
             <h1 className="text-4xl font-semibold pb-7">About</h1>
           </span>
-          {userSession ? (
+          {userSession && (
             <Link
               className="hidden pt-2 underline sm:block hover:opacity-75"
               to="/home"
             >
               Back to Home
             </Link>
-          ) : null}
+          )}
         </div>
 
         <article className="flex flex-col gap-10 items-center md:flex-row md:max-w-3xl">

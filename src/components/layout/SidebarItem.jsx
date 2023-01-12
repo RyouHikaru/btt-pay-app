@@ -23,7 +23,13 @@ const SidebarMenuItem = ({ text }) => {
   };
 
   return (
-    <li className={`border-l-4 border-solid ${isActive ? "border-amber-400 bg-stone-700" : "border-stone-800 hover:bg-stone-700 hover:border-stone-700"}`}>
+    <li
+      className={`border-l-4 border-solid ${
+        isActive
+          ? "border-amber-400 bg-stone-700"
+          : "border-stone-800 hover:bg-stone-700 hover:border-stone-700"
+      }`}
+    >
       {text !== "logout" ? (
         <Link to={`/${text}`}>
           <div className="flex gap-2 py-5 px-10">
@@ -32,7 +38,7 @@ const SidebarMenuItem = ({ text }) => {
           </div>
         </Link>
       ) : (
-        <button type="button" onClick={logout}>
+        <button type="button" onClick={logout} className="w-full">
           <div className="flex gap-2 py-5 px-10">
             <span className="text-2xl">{getIcon()}</span>
             <span>{text.toUpperCase()}</span>
