@@ -3,16 +3,10 @@ import CashInForm from "./CashInForm";
 import TransferCoinsForm from "./TransferCoinsForm";
 
 const ServiceCard = ({ name }) => {
-  const getComponents = () => {
-    switch (name) {
-      case "cash-in":
-        return <CashInForm />;
-      case "transfer-coins":
-        return <TransferCoinsForm />;
-      default:
-        return null;
-    }
-  };
+  const components = {
+    "cash-in": <CashInForm />,
+    "transfer-coins": <TransferCoinsForm />,
+  }
 
   return (
     <section className="flex flex-col bg-amber-100 gap-5 w-full md:w-3/4 xl:w-1/2 p-5 rounded-md shadow-xl">
@@ -27,7 +21,7 @@ const ServiceCard = ({ name }) => {
           Back to Services
         </Link>
       </span>
-      <div>{getComponents()}</div>
+      <div>{components[name]}</div>
     </section>
   );
 };
