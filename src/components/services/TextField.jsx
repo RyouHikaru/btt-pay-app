@@ -12,11 +12,9 @@ const TextField = ({
   minAmount,
   balance,
 }) => {
-  const isAmount = htmlFor === "account";
-
   return (
     <>
-      {!isAmount ? (
+      {!balance ? (
         <label htmlFor={htmlFor}>{text}</label>
       ) : (
         <span className="flex justify-between items-center">
