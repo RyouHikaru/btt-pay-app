@@ -35,38 +35,34 @@ const Help = () => {
               account. An account represents the user's e-wallet.
             </p>
             <h3 className="font-semibold italic">Account Types</h3>
-            <p>
-              <ul className="list-disc list-inside">
-                <li>
-                  <span className="font-semibold">PAY</span> - this account is
-                  mainly used for consuming Services (check out Services section
-                  below).
-                </li>
-                <li>
-                  <span className="font-semibold">SAVINGS</span> - this account
-                  is mainly used for savings and earning interests (check out
-                  Interest calculation below).
-                </li>
-              </ul>
-            </p>
+            <ul className="list-disc list-inside">
+              <li>
+                <span className="font-semibold">PAY</span> - this account is
+                mainly used for consuming Services (check out Services section
+                below).
+              </li>
+              <li>
+                <span className="font-semibold">SAVINGS</span> - this account is
+                mainly used for savings and earning interests (check out
+                Interest calculation below).
+              </li>
+            </ul>
             <p className="italic underline text-sm">
               Note: Both types may be used to consume Services. The only
               difference is that SAVINGS has an earning mechanism.
             </p>
             <h3 className="font-semibold italic">How to an Open Account</h3>
-            <p>
-              <ol className="list-decimal list-inside">
-                <li>
-                  Go to <span className="font-semibold">Accounts</span> by
-                  clicking it in the menu.
-                </li>
-                <li>Click on the account type you want to open.</li>
-                <li>
-                  Confirm selecttion by clicking{" "}
-                  <span className="font-semibold">"Yes, I agree"</span> button.
-                </li>
-              </ol>
-            </p>
+            <ol className="list-decimal list-inside">
+              <li>
+                Go to <span className="font-semibold">Accounts</span> by
+                clicking it in the menu.
+              </li>
+              <li>Click on the account type you want to open.</li>
+              <li>
+                Confirm by clicking{" "}
+                <span className="font-semibold">"Yes, I agree"</span> button.
+              </li>
+            </ol>
           </div>
         </article>
 
@@ -79,27 +75,25 @@ const Help = () => {
               BTT Pay offers different services for the users to consume.
               Currently, there are four available services:
             </p>
-            <p>
-              <ul className="list-disc list-inside">
-                <li>
-                  <span className="font-semibold">CASH IN</span> - this service
-                  is used to cash in coins to your account.
-                </li>
-                <li>
-                  <span className="font-semibold">TRANSFER COINS</span> - this
-                  service is used to transfer your BTT coins from one account to
-                  another.
-                </li>
-                <li>
-                  <span className="font-semibold">PAY BILLS</span> - this
-                  service is used to pay your bills to BTT partner merchants.
-                </li>
-                <li>
-                  <span className="font-semibold">BUY LOAD</span> - this service
-                  is used to buy load for your specified mobile number.
-                </li>
-              </ul>
-            </p>
+            <ul className="list-disc list-inside">
+              <li>
+                <span className="font-semibold">CASH IN</span> - this service is
+                used to cash in coins to your account.
+              </li>
+              <li>
+                <span className="font-semibold">TRANSFER COINS</span> - this
+                service is used to transfer your BTT coins from one account to
+                another.
+              </li>
+              <li>
+                <span className="font-semibold">PAY BILLS</span> - this service
+                is used to pay your bills to BTT partner merchants.
+              </li>
+              <li>
+                <span className="font-semibold">BUY LOAD</span> - this service
+                is used to buy load for your specified mobile number.
+              </li>
+            </ul>
             <p className="italic underline text-sm">
               Note: PAY BILLS and BUY LOAD is currently under development.
             </p>
