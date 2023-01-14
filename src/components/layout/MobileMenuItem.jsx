@@ -13,25 +13,15 @@ import {
 const MobileMenuItem = ({ text }) => {
   const logout = useStoreActions((action) => action.logout);
 
-  const getIcon = () => {
-    switch (text) {
-      case "accounts":
-        return <MdAccountBalanceWallet />;
-      case "services":
-        return <FaHandHoldingUsd />;
-      case "login":
-        return <BiLogIn />;
-      case "logout":
-        return <BiLogOut />;
-      case "about":
-        return <IoMdInformationCircle />;
-      case "contact":
-        return <IoIosSend />;
-      case "help":
-        return <IoIosHelpCircle />;
-      default:
-        return <FaHome />;
-    }
+  const icon = {
+    home: <FaHome />,
+    accounts: <MdAccountBalanceWallet />,
+    services: <FaHandHoldingUsd />,
+    login: <BiLogIn />,
+    logout: <BiLogOut />,
+    about: <IoMdInformationCircle />,
+    contact: <IoIosSend />,
+    help: <IoIosHelpCircle />,
   };
 
   return (
@@ -39,14 +29,14 @@ const MobileMenuItem = ({ text }) => {
       {text !== "logout" ? (
         <Link to={text !== "login" ? `/${text}` : "/"}>
           <div className="flex gap-2 py-5 px-7">
-            <span className="text-2xl">{getIcon()}</span>
+            <span className="text-2xl">{icon[text]}</span>
             <span>{text.toUpperCase()}</span>
           </div>
         </Link>
       ) : (
         <button type="button" onClick={logout}>
           <div className="flex gap-2 py-5 px-7 w-[100vw]">
-            <span className="text-2xl">{getIcon()}</span>
+            <span className="text-2xl">{icon[text]}</span>
             <span>{text.toUpperCase()}</span>
           </div>
         </button>

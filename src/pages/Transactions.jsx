@@ -1,5 +1,5 @@
 import { useStoreState, useStoreActions } from "easy-peasy";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Oval } from "react-loading-icons";
 import TransactionCard from "../components/transactions/TransactionCard";
@@ -7,39 +7,44 @@ import TransactionCard from "../components/transactions/TransactionCard";
 const Transactions = () => {
   const redirect = useNavigate();
   const { acctType } = useParams();
-
-  const userSession = useStoreState((state) => state.userSession);
-  const accounts = useStoreState((state) => state.accounts);
-  const hasAccount = useStoreState((state) => state.hasAccount);
-  const accountTypes = useStoreState((state) => state.accountTypes);
+  const [account, setAccount] = useState(null);
+  const { userSession, accounts } = useStoreState((state) => ({
+    userSession: state.userSession,
+    accounts: state.accounts,
+  }));
   const retrieveUserAccounts = useStoreActions(
     (action) => action.retrieveUserAccounts
   );
 
-  const [account, setAccount] = useState(null);
+  const accountTypes = useMemo(() => {
+    const types = accounts.map((acct) => acct.accountType);
+    return types.length ? types : ["PAY", "SAVINGS"];
+  }, [accounts]);
+
+  const filteredAccount = useMemo(() => {
+    return accounts.filter(
+      (acct) => acct.accountType === acctType.toUpperCase()
+    )[0];
+  }, [accounts, acctType]);
 
   useEffect(() => {
     if (!userSession) redirect("/");
-    else retrieveUserAccounts(userSession.token);
+    else {
+      retrieveUserAccounts(userSession.token);
+    }
   }, [userSession, redirect, retrieveUserAccounts]);
 
   useEffect(() => {
-    if (!hasAccount || !accountTypes.includes(acctType.toUpperCase())) {
+    if (!accountTypes.includes(acctType.toUpperCase())) {
       redirect("/accounts");
     }
-  }, [redirect, accountTypes, acctType, hasAccount]);
+  }, [redirect, accountTypes, acctType]);
 
   useEffect(() => {
-    if (userSession) {
-      setAccount(
-        accounts.filter(
-          (acct) => acct.accountType === acctType.toUpperCase()
-        )[0]
-      );
-    }
-  }, [userSession, acctType, accounts, setAccount]);
+    setAccount(filteredAccount);
+  }, [filteredAccount, setAccount]);
 
-  return userSession && accounts.length && hasAccount ? (
+  return userSession && accounts.length ? (
     <section className="flex-grow p-4 bg-gradient-to-br from-amber-200 to-amber-400 opacity-95 text-stone-800 sm:p-6 md:p-10">
       <TransactionCard acctType={acctType.toUpperCase()} account={account} />
     </section>

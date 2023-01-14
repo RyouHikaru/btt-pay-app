@@ -15,9 +15,11 @@ import {
 } from "../util/validations";
 
 const Registration = () => {
-  const registerUser = useStoreActions((action) => action.register);
-  const setShowModal = useStoreActions((action) => action.setShowModal);
   const redirect = useNavigate();
+  const { registerUser, setShowModal } = useStoreActions((action) => ({
+    registerUser: action.registerUser,
+    setShowModal: action.setShowModal,
+  }));
   const {
     register,
     handleSubmit,

@@ -9,17 +9,11 @@ const SidebarMenuItem = ({ text }) => {
   const logout = useStoreActions((action) => action.logout);
   const isActive = path.includes(text);
 
-  const getIcon = () => {
-    switch (text) {
-      case "accounts":
-        return <MdAccountBalanceWallet />;
-      case "services":
-        return <FaHandHoldingUsd />;
-      case "logout":
-        return <BiLogOut />;
-      default:
-        return <FaHome />;
-    }
+  const icon = {
+    home: <FaHome />,
+    accounts: <MdAccountBalanceWallet />,
+    services: <FaHandHoldingUsd />,
+    logout: <BiLogOut />,
   };
 
   return (
@@ -33,14 +27,14 @@ const SidebarMenuItem = ({ text }) => {
       {text !== "logout" ? (
         <Link to={`/${text}`}>
           <div className="flex gap-2 py-5 px-10">
-            <span className="text-2xl">{getIcon()}</span>
+            <span className="text-2xl">{icon[text]}</span>
             <span>{text.toUpperCase()}</span>
           </div>
         </Link>
       ) : (
         <button type="button" onClick={logout} className="w-full">
           <div className="flex gap-2 py-5 px-10">
-            <span className="text-2xl">{getIcon()}</span>
+            <span className="text-2xl">{icon[text]}</span>
             <span>{text.toUpperCase()}</span>
           </div>
         </button>
