@@ -1,14 +1,23 @@
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useState } from "react";
 import { modalHeaders, modalType } from "../../util/modalContent";
-import errorMessages from "../../util/errorMessages";
 import { isAccountExisting } from "../../util/validations";
+import errorMessages from "../../util/errorMessages";
+import Dropdown from "./Dropdown";
+import Container from "./Container";
+import TextField from "./TextField";
+import Button from "./Button";
+import Form from "./Form";
 
 const TransferCoinsForm = () => {
-  const accounts = useStoreState((state) => state.accounts);
-  const setShowModal = useStoreActions((action) => action.setShowModal);
-  const transferCoins = useStoreActions((action) => action.transferCoins);
-  const token = useStoreState((state) => state.userSession).token;
+  const { token, accounts } = useStoreState((state) => ({
+    token: state.userSession.token,
+    accounts: state.accounts,
+  }));
+  const { transferCoins, setShowModal } = useStoreActions((action) => ({
+    transferCoins: action.transferCoins,
+    setShowModal: action.setShowModal,
+  }));
 
   const initialData = {
     fromAccountNumber: "",
@@ -125,64 +134,44 @@ const TransferCoinsForm = () => {
   };
 
   return (
-    <form className="grid gap-5" onSubmit={handleSubmit}>
-      <div className="grid gap-1">
-        <label htmlFor="select-account">Select Account</label>
-        <select
-          value={data.fromAccountNumber}
-          onChange={handleInputChange}
-          className={`bg-amber-50 p-4 border-2 border-amber-200 rounded-md outline-none focus:border-amber-300 ${
-            accounts.length ? "" : "text-stone-500"
-          }`}
-          name="fromAccountNumber"
-        >
-          <option defaultValue={""}>
-            {accounts.length ? "" : "No accounts found"}
-          </option>
-          {accounts.map((account) => (
-            <option key={account.id} value={account.accountNumber}>
-              {account.accountNumber}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="grid gap-1">
-        <label htmlFor="amount">Receiver</label>
-        <input
-          onChange={handleInputChange}
+    <Form handleSubmit={handleSubmit}>
+      <Container>
+        <Dropdown
+          htmlFor="select-account"
+          text="Select Account"
+          accounts={accounts}
+          accountNumber={data.fromAccountNumber}
+          handleInputChange={handleInputChange}
+          serviceType="transfer-coins"
+        />
+      </Container>
+      <Container>
+        <TextField
+          htmlFor="receiver"
+          text="Receiver"
+          handleInputChange={handleInputChange}
           value={data.toAccountNumber}
-          className="bg-amber-50 uppercase p-4 border-2 border-amber-200 rounded-md outline-none focus:border-amber-300 placeholder:normal-case placeholder:text-stone-500"
           name="toAccountNumber"
           type="text"
+          placeHolderText="Enter recipient's account number"
           maxLength={9}
-          placeholder="Enter recipient's account number"
         />
-      </div>
-      <div className="grid gap-1">
-        <span className="flex justify-between items-center">
-          <label htmlFor="amount">Amount</label>
-          <label htmlFor="available-balance" className="text-xs">
-            Available: {formatBal()}
-          </label>
-        </span>
-        <input
-          onChange={handleInputChange}
+      </Container>
+      <Container>
+        <TextField
+          htmlFor="amount"
+          text="Amount"
+          handleInputChange={handleInputChange}
           value={data.amount}
-          className="bg-amber-50 p-4 border-2 border-amber-200 rounded-md outline-none focus:border-amber-300 placeholder:text-stone-500"
           name="amount"
           type="number"
-          step="any"
-          min={0}
-          placeholder="Enter amount"
+          placeHolderText="Enter amount"
+          minAmount={0}
+          balance={formatBal()}
         />
-      </div>
-      <button
-        type="submit"
-        className="justify-self-start bg-amber-500 text-amber-100 p-4 w-1/3 rounded-md hover:opacity-75"
-      >
-        Submit
-      </button>
-    </form>
+      </Container>
+      <Button>Submit</Button>
+    </Form>
   );
 };
 

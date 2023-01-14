@@ -2,11 +2,18 @@ import { useStoreActions, useStoreState } from "easy-peasy";
 import { useState } from "react";
 import { modalHeaders, modalType } from "../../util/modalContent";
 import errorMessages from "../../util/errorMessages";
+import Dropdown from "./Dropdown";
+import Form from "./Form";
+import Container from "./Container";
+import Button from "./Button";
+import TextField from "./TextField";
 
 const CashInForm = () => {
   const accounts = useStoreState((state) => state.accounts);
-  const setShowModal = useStoreActions((action) => action.setShowModal);
-  const cashIn = useStoreActions((action) => action.cashIn);
+  const { cashIn, setShowModal } = useStoreActions((action) => ({
+    cashIn: action.cashIn,
+    setShowModal: action.setShowModal,
+  }));
 
   const initialData = {
     accountNumber: "",
@@ -37,17 +44,20 @@ const CashInForm = () => {
     } else {
       setShowModal({
         header: modalHeaders.CASH_IN,
-        body: errorMessages.CONFIRM_CASH_IN.replace("%", data.amount).replace("%", data.accountNumber),
+        body: errorMessages.CONFIRM_CASH_IN.replace("%", data.amount).replace(
+          "%",
+          data.accountNumber
+        ),
         visible: true,
         type: modalType.CONFIRM,
         callback: {
           action: cashIn,
-          args: data
+          args: data,
         },
         cleanUp: {
           action: setData,
-          args: initialData
-        }
+          args: initialData,
+        },
       });
     }
   };
@@ -62,47 +72,31 @@ const CashInForm = () => {
   };
 
   return (
-    <form className="grid gap-5" onSubmit={handleSubmit}>
-      <div className="grid gap-1">
-        <label htmlFor="select-account">Select Account</label>
-        <select
-          value={data.accountNumber}
-          onChange={handleInputChange}
-          className={`bg-amber-50 p-4 border-2 border-amber-200 rounded-md outline-none focus:border-amber-300 ${
-            accounts.length ? "" : "text-stone-500"
-          }`}
-          name="accountNumber"
-        >
-          <option defaultValue={""}>
-            {accounts.length ? "" : "No accounts found"}
-          </option>
-          {accounts.map((account) => (
-            <option key={account.id} value={account.accountNumber}>
-              {account.accountNumber}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="grid gap-1">
-        <label htmlFor="amount">Amount</label>
-        <input
-          onChange={handleInputChange}
+    <Form handleSubmit={handleSubmit}>
+      <Container>
+        <Dropdown
+          htmlFor="select-account"
+          text="Select Account"
+          accounts={accounts}
+          accountNumber={data.accountNumber}
+          handleInputChange={handleInputChange}
+          serviceType="cash-in"
+        />
+      </Container>
+      <Container>
+        <TextField
+          htmlFor="amount"
+          text="Amount"
+          handleInputChange={handleInputChange}
           value={data.amount}
-          className="bg-amber-50 p-4 border-2 border-amber-200 rounded-md outline-none focus:border-amber-300 placeholder:text-stone-500"
           name="amount"
           type="number"
-          step="any"
-          min={0}
-          placeholder="Enter amount"
+          placeHolderText="Enter amount"
+          minAmount={0}
         />
-      </div>
-      <button
-        type="submit"
-        className="justify-self-start bg-amber-500 text-amber-100 p-4 w-1/3 rounded-md hover:opacity-75"
-      >
-        Submit
-      </button>
-    </form>
+      </Container>
+      <Button>Submit</Button>
+    </Form>
   );
 };
 
