@@ -11,6 +11,7 @@ import Transactions from "./pages/Transactions";
 import ServiceMenu from "./pages/ServiceMenu";
 import Service from "./pages/Service";
 import Contact from "./pages/Contact";
+import Help from "./pages/Help";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="help" element={<Help />} />
         <Route path="home" element={<Home />} />
         <Route path="accounts">
           <Route index element={<Accounts />} />
