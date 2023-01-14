@@ -5,8 +5,10 @@ import errorMessages from "../../util/errorMessages";
 
 const AddAccountCard = ({ type }) => {
   const userSession = useStoreState((state) => state.userSession);
-  const setShowModal = useStoreActions((action) => action.setShowModal);
-  const openAccount = useStoreActions((action) => action.openAccount);
+  const { openAccount, setShowModal } = useStoreActions((action) => ({
+    openAccount: action.registerUser,
+    setShowModal: action.setShowModal,
+  }));
 
   const isSavings = type === "SAVINGS";
   const textColor = {

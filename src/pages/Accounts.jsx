@@ -7,15 +7,16 @@ import AddAccountCard from "../components/accounts/AddAccountCard";
 
 const Accounts = () => {
   const redirect = useNavigate();
-  const userSession = useStoreState((state) => state.userSession);
-  const isLoading = useStoreState((state) => state.isLoading);
-  const accounts = useStoreState((state) => state.accounts);
+  const [isSavingsBalClicked, setIsSavingsBalClicked] = useState(false);
+  const [isPayBalClicked, setIsPayBalClicked] = useState(false);
+  const { userSession, isLoading, accounts } = useStoreState((state) => ({
+    userSession: state.userSession,
+    isLoading: state.isLoading,
+    accounts: state.accounts,
+  }));
   const retrieveUserAccounts = useStoreActions(
     (action) => action.retrieveUserAccounts
   );
-
-  const [isSavingsBalClicked, setIsSavingsBalClicked] = useState(false);
-  const [isPayBalClicked, setIsPayBalClicked] = useState(false);
 
   useEffect(() => {
     if (!userSession) redirect("/");
@@ -73,7 +74,7 @@ const Accounts = () => {
   };
 
   return userSession ? (
-    <section className="flex-grow grid grid-rows-2 grid-cols-1 items-start gap-10 p-10 bg-gradient-to-br from-amber-200 to-amber-400 opacity-95 text-stone-800 xl:grid-flow-col xl:grid-rows-none xl:grid-cols-2">
+    <section className="flex-grow grid grid-rows-2 grid-cols-1 gap-10 p-10 bg-gradient-to-br from-amber-200 to-amber-400 opacity-95 text-stone-800 xl:grid-flow-col xl:grid-rows-none xl:grid-cols-2 xl:items-start">
       {!isLoading && getComponents()}
     </section>
   ) : (

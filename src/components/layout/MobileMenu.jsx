@@ -2,11 +2,13 @@ import { useStoreState, useStoreActions } from "easy-peasy";
 import MobileMenuItem from "./MobileMenuItem";
 
 const MobileHeader = () => {
-  const isClicked = useStoreState((state) => state.isMobileMenuClicked);
+  const { userSession, isClicked } = useStoreState((state) => ({
+    userSession: state.userSession,
+    isClicked: state.isMobileMenuClicked,
+  }));
   const setIsClicked = useStoreActions(
     (action) => action.setIsMobileMenuClicked
   );
-  const userSession = useStoreState((state) => state.userSession);
 
   const handleClick = () => {
     setIsClicked(!isClicked);

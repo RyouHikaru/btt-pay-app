@@ -1,19 +1,20 @@
 import { useStoreActions, useStoreState } from "easy-peasy";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { useLocation, Link } from "react-router-dom";
 import logo from "../../assets/img/logo192.png";
 
 const Header = () => {
   const path = useLocation().pathname;
-  const userSession = useStoreState((state) => state.userSession);
-  const isClicked = useStoreState((state) => state.isMobileMenuClicked);
+  const { userSession, isClicked } = useStoreState((state) => ({
+    userSession: state.userSession,
+    isClicked: state.isMobileMenuClicked,
+  }));
   const setIsClicked = useStoreActions(
     (action) => action.setIsMobileMenuClicked
   );
-  const [anchorLink, setAnchorLink] = useState("/");
 
-  useEffect(() => {
-    setAnchorLink(!userSession ? "/" : "home");
+  const anchorLink = useMemo(() => {
+    return !userSession ? "/" : "home";
   }, [userSession]);
 
   const handleClick = () => {

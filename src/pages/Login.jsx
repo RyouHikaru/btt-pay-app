@@ -8,8 +8,10 @@ import Button from "../components/general/Button";
 const Login = () => {
   const redirect = useNavigate();
   const errorMsg = useStoreState((state) => state.errorMsg);
-  const setErrorMsg = useStoreActions((action) => action.setErrorMsg);
-  const login = useStoreActions((action) => action.login);
+  const { setErrorMsg, login } = useStoreActions((action) => ({
+    setErrorMsg: action.setErrorMsg,
+    login: action.login,
+  }));
 
   const [data, setData] = useState({ username: "", password: "" });
   const [isValid, setIsValid] = useState(true);

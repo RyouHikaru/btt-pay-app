@@ -15,14 +15,6 @@ const model = {
   setAccounts: action((state, payload) => {
     state.accounts = payload;
   }),
-  hasAccount: true,
-  setHasAccount: action((state, payload) => {
-    state.hasAccount = payload;
-  }),
-  accountTypes: ["PAY", "SAVINGS"],
-  setAccountTypes: action((state, payload) => {
-    state.accountTypes = payload;
-  }),
   errorMsg: null,
   setErrorMsg: action((state, payload) => {
     state.errorMsg = payload;
@@ -98,15 +90,12 @@ const model = {
     }
   }),
   retrieveUserAccounts: thunk(async (actions, payload, helper) => {
-    const { setAccounts, setHasAccount, setIsLoading, setAccountTypes } =
-      helper.getStoreActions();
+    const { setAccounts, setIsLoading } = helper.getStoreActions();
 
     setIsLoading(true);
 
     const token = payload;
-    const decodedToken = jwtDecode(token);
-
-    const id = decodedToken.userId;
+    const id = jwtDecode(token).userId;
 
     try {
       const URL = "/api/accounts/user?";
@@ -116,14 +105,6 @@ const model = {
 
       const accounts = response.data;
       setAccounts(accounts);
-      setHasAccount(accounts.length !== 0);
-
-      let types = [];
-      accounts.forEach((acct) => {
-        types.push(acct.accountType);
-      });
-
-      setAccountTypes(types);
     } catch (e) {
       console.log(e);
     } finally {
@@ -133,8 +114,7 @@ const model = {
   openAccount: thunk(async (actions, payload, helper) => {
     const { setShowModal, retrieveUserAccounts } = helper.getStoreActions();
     const { type, token } = payload;
-    const decodedToken = jwtDecode(token);
-    const id = decodedToken.userId;
+    const id = jwtDecode(token).userId;
 
     try {
       const data = { accountType: type, userId: id };

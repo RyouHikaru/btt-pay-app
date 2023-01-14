@@ -17,42 +17,13 @@ const ValidatedTextField = ({
     setIsValid(!error);
   }, [error]);
 
-  const getInputStyle = () => {
-    const validStyles =
-      "peer rounded-md border-2 border-stone-500 border-solid p-4 w-full bg-amber-100 focus:outline-none";
-    const inValidStyles = validStyles
-      .replace("border-stone-500", "border-red-500")
-      .concat(" ", "text-red-500");
-
-    return isValid ? validStyles : inValidStyles;
-  };
-
-  const getTextAreaStyle = () => {
-    const validStyles =
-      "peer rounded-md resize-none border-2 border-stone-500 border-solid p-4 w-full bg-amber-100 focus:outline-none";
-    const inValidStyles = validStyles
-      .replace("border-stone-500", "border-red-500")
-      .concat(" ", "text-red-500");
-
-    return isValid ? validStyles : inValidStyles;
-  };
-
-  const getLabelStyle = () => {
-    const baseStyle =
-      "peer-focus:animate-slide-out text-md absolute top-4 left-3 px-1 pointer-events-none";
-    const validStyles = !hasContent
-      ? baseStyle
-      : baseStyle.concat(" ", "peer-valid:animate-slide-out");
-    const invalidStyles = validStyles.concat(" ", "text-red-500");
-
-    return isValid ? validStyles : invalidStyles;
-  };
-
   return (
     <div className="relative">
       {type !== "textarea" ? (
         <input
-          className={getInputStyle()}
+          className={`peer rounded-md p-4 w-full bg-amber-100 border-2 border-solid focus:outline-none ${
+            isValid ? "border-stone-500" : "border-red-500 text-red-500"
+          }`}
           type={type}
           name={name}
           {...register(name, validation)}
@@ -61,13 +32,20 @@ const ValidatedTextField = ({
       ) : (
         <textarea
           rows="7"
-          className={getTextAreaStyle()}
+          className={`peer rounded-md resize-none border-2 border-solid p-4 w-full bg-amber-100 focus:outline-none ${
+            isValid ? "border-stone-500" : "border-red-500 text-red-500"
+          }`}
           type={type}
           name={name}
           {...register(name, validation)}
         />
       )}
-      <label className={getLabelStyle()} htmlFor={name}>
+      <label
+        className={`peer-focus:animate-slide-out text-md absolute top-4 left-3 px-1 pointer-events-none ${
+          hasContent ? "peer-valid:animate-slide-out" : ""
+        } ${isValid ? "" : "text-red-500"}`}
+        htmlFor={name}
+      >
         {text}
       </label>
       <ErrorMessage

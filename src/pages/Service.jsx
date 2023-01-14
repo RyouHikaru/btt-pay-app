@@ -11,11 +11,14 @@ const Service = () => {
   const retrieveUserAccounts = useStoreActions(
     (action) => action.retrieveUserAccounts
   );
+  const services = ["cash-in", "transfer-coins", "pay-bills", "buy-load"];
+  const hasService = services.includes(service);
 
   useEffect(() => {
     if (!userSession) redirect("/");
+    else if (!hasService) redirect("/services");
     else retrieveUserAccounts(userSession.token);
-  }, [userSession, redirect, retrieveUserAccounts]);
+  }, [userSession, hasService, redirect, retrieveUserAccounts]);
 
   return userSession ? (
     <article className="flex-grow bg-gradient-to-br from-amber-200 to-amber-400 opacity-95 flex justify-center items-center p-10">
