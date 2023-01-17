@@ -34,28 +34,28 @@ const CashInForm = () => {
 
     if (!account.accountNumber) {
       setShowModal({
-        header: modalHeaders.PAY_BILLS,
+        header: modalHeaders.BUY_LOAD,
         body: errorMessages.NO_PAY_ACCOUNT,
         visible: true,
         type: modalType.ERROR,
       });
     } else if (data.mobileNo === "" || !isMobileNumberValid(data.mobileNo)) {
       setShowModal({
-        header: modalHeaders.PAY_BILLS,
+        header: modalHeaders.BUY_LOAD,
         body: errorMessages.INVALID_MOBILE_NO,
         visible: true,
         type: modalType.ERROR,
       });
     } else if (!data.amount.length || data.amount === "0") {
       setShowModal({
-        header: modalHeaders.PAY_BILLS,
+        header: modalHeaders.BUY_LOAD,
         body: errorMessages.INVALID_AMOUNT,
         visible: true,
         type: modalType.ERROR,
       });
     } else if (account.balance < data.amount) {
       setShowModal({
-        header: modalHeaders.PAY_BILLS,
+        header: modalHeaders.BUY_LOAD,
         body: errorMessages.NOT_ENOUGH_BALANCE,
         visible: true,
         type: modalType.ERROR,
@@ -65,7 +65,7 @@ const CashInForm = () => {
       payBillsData.accountNumber = account.accountNumber;
 
       setShowModal({
-        header: modalHeaders.PAY_BILLS,
+        header: modalHeaders.BUY_LOAD,
         body: errorMessages.CONFIRM_BUY_LOAD.replace("%", data.amount).replace(
           "%",
           data.mobileNo
