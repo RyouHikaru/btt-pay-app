@@ -4,6 +4,7 @@ export const modalHeaders = {
   CASH_IN: "Cash In",
   TRANSFER_COINS: "Transfer Coins",
   PAY_BILLS: "Pay Bills",
+  BUY_LOAD: "Buy Load",
   LOGOUT: "Logout"
 };
 

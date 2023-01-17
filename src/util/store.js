@@ -237,6 +237,32 @@ const model = {
       console.log(e);
     }
   }),
+  buyLoad: thunk(async (actions, payload, helper) => {
+    const { userSession } = helper.getState();
+    const { setShowModal } = helper.getStoreActions();
+
+    try {
+      const data = {
+        accountNumber: payload.accountNumber,
+        details: payload.details,
+        amount: payload.amount,
+        transactionType: payload.transactionType,
+      };
+
+      const response = await api.post("/api/transactions", data, {
+        headers: { Authorization: `Bearer ${userSession.token}` },
+      });
+
+      setShowModal({
+        header: modalHeaders.BUY_LOAD,
+        body: response.data.message,
+        visible: true,
+        type: modalType.INFO,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }),
 };
 
 export default createStore(model);

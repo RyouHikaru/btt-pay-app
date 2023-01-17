@@ -51,6 +51,10 @@ export const isEmailValid = (email) => {
   return regexPatterns.EMAIL.test(email);
 };
 
+export const isMobileNumberValid = (mobileNo) => {
+  return regexPatterns.MOBILE_NO.test(mobileNo);
+}
+
 export const firstNameValidation = {
   required: errorMessages.REQUIRED_FIRST_NAME,
   minLength: {

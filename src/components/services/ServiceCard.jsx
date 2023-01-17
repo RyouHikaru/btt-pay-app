@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import CashInForm from "./CashInForm";
 import TransferCoinsForm from "./TransferCoinsForm";
 import PayBillsForm from "./PayBillsForm";
+import BuyLoadForm from "./BuyLoadForm";
 
 const ServiceCard = ({ name }) => {
   const components = {
     "cash-in": <CashInForm />,
     "transfer-coins": <TransferCoinsForm />,
     "pay-bills": <PayBillsForm />,
+    "buy-load": <BuyLoadForm />,
   }
 
   return (

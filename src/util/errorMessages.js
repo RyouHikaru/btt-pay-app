@@ -24,6 +24,7 @@ const errorMessages = {
   INVALID_AMOUNT: "Please enter an amount more than 0.",
   INVALID_RECEIVER: "Sorry, you cannot transfer coins from the same account.",
   INVALID_REF_NO: "Please enter the reference number of the bill you are paying for.",
+  INVALID_MOBILE_NO: "Please enter a valid mobile number.",
   EMAIL_ALREADY_USED: "Email is already in use.",
   USERNAME_TAKEN: "Username is already taken.",
   PASSWORD_MISMATCH: "Password does not match.",
@@ -40,6 +41,7 @@ const errorMessages = {
   CONFIRM_CASH_IN: "Confirm Cash In amount of % coins for your account %?",
   CONFIRM_TRANSFER: "Confirm Transfer of % coins to account %?",
   CONFIRM_PAY_BILLS: "Confirm Payment of % coins to the specified reference number?",
+  CONFIRM_BUY_LOAD: "Confirm Buy Load using % coins to mobile number %?",
   
 };
 
