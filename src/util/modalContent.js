@@ -3,6 +3,7 @@ export const modalHeaders = {
   OPEN_ACCOUNT: "Open Account",
   CASH_IN: "Cash In",
   TRANSFER_COINS: "Transfer Coins",
+  PAY_BILLS: "Pay Bills",
   LOGOUT: "Logout"
 };
 

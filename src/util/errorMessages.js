@@ -23,6 +23,7 @@ const errorMessages = {
   INVALID_PASSWORD: "Password must have at least one (1) each: uppercase, lowercase, numeric, and special character.",
   INVALID_AMOUNT: "Please enter an amount more than 0.",
   INVALID_RECEIVER: "Sorry, you cannot transfer coins from the same account.",
+  INVALID_REF_NO: "Please enter the reference number of the bill you are paying for.",
   EMAIL_ALREADY_USED: "Email is already in use.",
   USERNAME_TAKEN: "Username is already taken.",
   PASSWORD_MISMATCH: "Password does not match.",
@@ -31,12 +32,14 @@ const errorMessages = {
   NO_RECEIVER: "Please enter receiver's account number",
   RECEIVER_DOES_NOT_EXIST: "Receiver's account number does not exist.",
   NOT_ENOUGH_BALANCE: "Sorry, you do not have enough balance on your account.",
+  NO_PAY_ACCOUNT: "Sorry, you do not have a PAY account yet. Consider opening one to access this feature.",
 
   // Confirmation
   CONFIRM_REGISTRATION: "By confirming, you have agreed that all details are valid.",
   CONFIRM_OPEN_ACCOUNT: "By confirming, you have agreed that a % account will be opened under your name.",
   CONFIRM_CASH_IN: "Confirm Cash In amount of % coins for your account %?",
   CONFIRM_TRANSFER: "Confirm Transfer of % coins to account %?",
+  CONFIRM_PAY_BILLS: "Confirm Payment of % coins to the specified reference number?",
   
 };
 

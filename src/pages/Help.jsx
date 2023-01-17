@@ -47,10 +47,6 @@ const Help = () => {
                 Interest calculation below).
               </li>
             </ul>
-            <p className="italic underline text-sm">
-              Note: Both types may be used to consume Services. The only
-              difference is that SAVINGS has an earning mechanism.
-            </p>
             <h3 className="font-semibold italic">How to an Open Account</h3>
             <ol className="list-decimal list-inside">
               <li>
@@ -95,7 +91,9 @@ const Help = () => {
               </li>
             </ul>
             <p className="italic underline text-sm">
-              Note: PAY BILLS and BUY LOAD is currently under development.
+              Note: Both type of accounts may use Cash In and Transfer Coins
+              services. When using Pay Bills and Buy Load services, your PAY
+              account (if any) will be automatically used.
             </p>
           </div>
         </article>
