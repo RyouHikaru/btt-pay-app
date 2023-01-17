@@ -77,6 +77,8 @@ const CashInForm = () => {
           args: initialData,
         },
       });
+      
+      account.balance = account.balance - data.amount;
     }
   };
 
