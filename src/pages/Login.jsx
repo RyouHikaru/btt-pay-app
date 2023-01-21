@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import TextField from "../components/general/TextField";
 import ErrorMessage from "../components/general/ErrorMessage";
 import Button from "../components/general/Button";
+import errorMessages from "../util/errorMessages";
 
 const Login = () => {
   const redirect = useNavigate();
@@ -20,7 +21,7 @@ const Login = () => {
     e.preventDefault();
 
     if (data.username.length === 0 || data.password.length === 0) {
-      setErrorMsg("Please input your username and password.");
+      setErrorMsg(errorMessages.REQUIRED_UN_AND_PW);
       setIsValid(false);
     } else {
       const loginResult = await login(data);

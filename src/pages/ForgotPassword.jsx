@@ -4,6 +4,7 @@ import { isEmailExisting, isEmailValid } from "../util/validations";
 import TextField from "../components/general/TextField";
 import ErrorMessage from "../components/general/ErrorMessage";
 import Button from "../components/general/Button";
+import errorMessages from "../util/errorMessages";
 
 const ForgotPassword = () => {
   const redirect = useNavigate();
@@ -15,13 +16,13 @@ const ForgotPassword = () => {
     e.preventDefault();
 
     if (email.length === 0) {
-      setErrorMsg("Please enter your email address.");
+      setErrorMsg(errorMessages.REQUIRED_EMAIL);
       setIsValid(false);
     } else if (!isEmailValid(email)) {
-      setErrorMsg("Please enter a valid email address.");
+      setErrorMsg(errorMessages.INVALID_EMAIL);
       setIsValid(false);
     } else if (!(await isEmailExisting(email))) {
-      setErrorMsg("Sorry, we cannot find user with that email.");
+      setErrorMsg(errorMessages.USER_EMAIL_NOT_FOUND);
       setIsValid(false);
     } else {
       setErrorMsg(null);

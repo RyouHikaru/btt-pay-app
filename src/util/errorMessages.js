@@ -10,6 +10,7 @@ const errorMessages = {
   REQUIRED_PASSWORD: required("password"),
   REQUIRED_CONTACT_NAME: required("name"),
   REQUIRED_CONTACT_MSG: required("message"),
+  REQUIRED_UN_AND_PW: "Please input your username and password.",
 
   // Range
   RANGE_NAME: range(2, 20),
@@ -34,6 +35,7 @@ const errorMessages = {
   RECEIVER_DOES_NOT_EXIST: "Receiver's account number does not exist.",
   NOT_ENOUGH_BALANCE: "Sorry, you do not have enough balance on your account.",
   NO_PAY_ACCOUNT: "Sorry, you do not have a PAY account yet. Consider opening one to access this feature.",
+  USER_EMAIL_NOT_FOUND: "Sorry, we cannot find user with that email.",
 
   // Confirmation
   CONFIRM_REGISTRATION: "By confirming, you have agreed that all details are valid.",
